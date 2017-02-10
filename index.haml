@@ -7,7 +7,7 @@
 		
 		%link(crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" rel="stylesheet")
 		%title onokatio
-	%body(style="text-align:center;")
+	%body
 		%nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
 			%a.navbar-brand(href="./")onokatio
 
@@ -30,6 +30,19 @@
 				%tr
 					%td Favorite color
 					%td Sky blue
+		.card(style="width: 45vw;")
+			.card-block.collapse#collapseExample
+				%h4.card-title Cryptocurrency Portfolio
+				%table.table
+					%tbody
+						%tr
+							%td Bitcoin
+							%td 0BTC
+						%tr
+							%td Monacoin
+							%td 0Mona
+			%a.btn(data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample")
+				%img.card-img-top(src="bitcoinLogo.svg" alt="Card image cap" style="width: 100%;padding: 0px 3rem;")
 		%script(crossorigin="anonymous" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" src="https://code.jquery.com/jquery-3.1.1.slim.min.js")
 		%script(crossorigin="anonymous" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js")
 		%script(crossorigin="anonymous" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js")
