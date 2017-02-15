@@ -1,48 +1,72 @@
-!!!
+- skill = Array.new
+- skill << Array.new(1,"Web Frontend") # frontend skill
+- skill[skill.length-1] << ["HTML5","Yea, I usually write it like this page !"]
+- skill[skill.length-1] << ["CSS3","I use to site decoration."]
+- skill[skill.length-1] << ["Bootstrap","This site use it, you know ?"]
+- skill << Array.new(1,"Programing") # backend skill
+- skill[skill.length-1] << ["PHP web backend","Most of my site is made by it !"]
+- skill[skill.length-1] << ["C lang app","My first language.I use for codegolf !"]
+- skill[skill.length-1] << ["Java software","For study of objective-language"]
+- skill[skill.length-1] << ["Google Chrome app and extension","For web wallet app."]
+- skill[skill.length-1] << ["REST API based bot","Twitter, Askmona, etc..."]
+- skill << Array.new(1,"Server") # server skill
+- skill[skill.length-1] << ["Ubuntu server","Install to Ubuntu Server version (not desktop) to my server HDD."]
+- skill[skill.length-1] << ["LA(N)MP - Linux Apache(Nginx) Mysql PHP","All of my web services use it."]
+- skill[skill.length-1] << ["Docker","I often use it for security and scalability."]
+- skill[skill.length-1] << ["OpenSSH","Build openssh server for remote work."]
+- skill[skill.length-1] << ["Tor relay","Build Tor relay server."]
+- skill[skill.length-1] << ["iptables","For build firewall and router"]
+- skill << Array.new(1,"Network") # network skill
+
+
+!!! 5
 %html(lang="en")
 	%head
-		%meta(content="text/html charset=UTF-8" http-equiv="Content-Type")
-		%meta(charset="utf-8")
-		%meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		%meta(http-equiv="Content-Type" content="text/html" charset="UTF-8")
+		%meta(http-equiv="Content-Language" content="en")
 		
 		%link(crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" rel="stylesheet")
+		%link(href="main.css" rel="stylesheet")
+
+		%meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		%meta(name="keywords" content="onokatio,katio,おのかちお,かちお")
+		%meta(name="description" content="おのかちおの個人サイトです。主に自己紹介と成果物、その他サービスへのリンクを掲載しています。")
+		%meta(name="auhthor" content="onokatio")
+
+		%meta(name="application-name" content="onokatio")
+
 		%title onokatio
 	%body
 		%nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
 			%a.navbar-brand(href="./")onokatio
-
-		%img.rounded.mx-auto.d-block(src="https://raw.githubusercontent.com/onokatio/onokatio.github.io/master/katio.webp" alt="katio cat" style="margin: 1rem")
+		%img.rounded.mx-auto.d-block(src="https://raw.githubusercontent.com/onokatio/onokatio.github.io/master/katio.webp" alt="katio cat" style="margin: 1rem;max-width: 225px;width: 34vw;")
 		%header
-		%table.table.table-striped
+		%table.table.table-striped(style="max-width: 655px;margin: 3rem auto;")
 			%tbody
-				%tr
-					%td Name
-					%td onokatio
-				%tr
-					%td Age
-					%td 0x0f
-				%tr
-					%td Gender
-					%td Male
-				%tr
-					%td Place
-					%td Tokyo Japan
-				%tr
-					%td Favorite color
-					%td Sky blue
-		.card(style="width: 45vw;")
-			.card-block.collapse#collapseExample
-				%h4.card-title Cryptocurrency Portfolio
-				%table.table
-					%tbody
-						%tr
-							%td Bitcoin
-							%td 0BTC
-						%tr
-							%td Monacoin
-							%td 0Mona
-			%a.btn(data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample")
-				%img.card-img-top(src="bitcoinLogo.svg" alt="Bitcoin Logo" style="width: 100%;padding: 0px 3rem;")
-		%script(crossorigin="anonymous" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" src="https://code.jquery.com/jquery-3.1.1.slim.min.js")
-		%script(crossorigin="anonymous" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js")
-		%script(crossorigin="anonymous" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js")
+				- status = Array.new
+				- status << ["Name","onokatio"]
+				- status << ["Age","0x0f"]
+				- status << ["Gender","Male"]
+				- status << ["Place","Tokyo Japan"]
+				- status << ["Favorite color","Sky blue"]
+				- status.each do |num|
+					%tr
+						%td #{num[0]}
+						%td #{num[1]}
+		.row.m-0.d-flex.flex-row.flex-wrap.justify-content-around.align-self-start
+			- for skillnum in 0..skill.length-1
+				.flexitem.col-sm-12.col-md-6.col-lg-6.col-xl-3.p-0
+					%table.table
+						%caption.text-center #{skill[skillnum][0]} Skill
+						%tbody
+							- for num in 1..skill[skillnum].length-1
+								%tr
+									%td #{skill[skillnum][num][0]}
+									%td #{skill[skillnum][num][1]}
+		%script(async defer src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n")
+		%script(async defer src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" crossorigin="anonymous" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb")
+		%script(async defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn")
+
+
+
+
