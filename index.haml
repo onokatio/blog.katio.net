@@ -2,7 +2,7 @@
 - skill << Array.new(1,"Web Frontend") # frontend skill
 - skill[skill.length-1] << ["HTML5","Yea, I usually write it like this page !"]
 - skill[skill.length-1] << ["CSS3","I use to site decoration."]
-- skill[skill.length-1] << ["Bootstrap","This site use it, you know ?"]
+- skill[skill.length-1] << ["Bootstrap","This site uses it, you know ?"]
 - skill << Array.new(1,"Programing") # backend skill
 - skill[skill.length-1] << ["PHP web backend","Most of my site is made by it !"]
 - skill[skill.length-1] << ["C lang app","My first language.I use for codegolf !"]
@@ -12,12 +12,18 @@
 - skill << Array.new(1,"Server") # server skill
 - skill[skill.length-1] << ["Ubuntu server","Install to Ubuntu Server version (not desktop) to my server HDD."]
 - skill[skill.length-1] << ["LA(N)MP - Linux Apache(Nginx) Mysql PHP","All of my web services use it."]
+- skill[skill.length-1] << ["Wordpress","My blog and some site use."]
 - skill[skill.length-1] << ["Docker","I often use it for security and scalability."]
 - skill[skill.length-1] << ["OpenSSH","Build openssh server for remote work."]
 - skill[skill.length-1] << ["Tor relay","Build Tor relay server."]
-- skill[skill.length-1] << ["iptables","For build firewall and router"]
+- skill[skill.length-1] << ["Iptables","For build firewall and router."]
+- skill[skill.length-1] << ["Squid","To build cache proxy server."]
+- skill[skill.length-1] << ["","For build firewall and router."]
 - skill << Array.new(1,"Network") # network skill
-
+- skill[skill.length-1] << ["DHCP server","For playing."]
+- skill[skill.length-1] << ["BIND9","To Get fake google.com in my lan."]
+- skill << Array.new(1,"Other") # network skill
+- skill[skill.length-1] << ["Shell script playing","echo,cat,sed,test,awk and shell pipline are GOD."]
 
 !!! 5
 %html(lang="en")
@@ -39,7 +45,9 @@
 	%body
 		%nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
 			%a.navbar-brand(href="./")onokatio
-		%img.rounded.mx-auto.d-block(src="https://raw.githubusercontent.com/onokatio/onokatio.github.io/master/katio.webp" alt="katio cat" style="margin: 1rem;max-width: 225px;width: 34vw;")
+		%picture.rounded.mx-auto.d-block(style="margin: 1rem;max-width: 225px;width: 34vw;")
+			%source(type="image/webp" srcset="https://raw.githubusercontent.com/onokatio/onokatio.github.io/master/katio.webp")
+			%img(src="katio.jpg" alt="katio cat")
 		%header
 		%table.table.table-striped(style="max-width: 655px;margin: 3rem auto;")
 			%tbody
