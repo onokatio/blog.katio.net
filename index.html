@@ -10,10 +10,7 @@
     <link href='main.css' rel='stylesheet'>
 
 	<!-- preload -->
-	<link rel="preload" href="https://raw.githubusercontent.com/onokatio/blog/master/index.md" as="fetch" crossorigin>
-	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" as="script" crossorigin>
-	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" as="script" crossorigin>
-	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" as="script" crossorigin>
+	<link rel="preload" href="https://blog.katio.net/blog/index.md" as="fetch">
 	<!-- /preload -->
     <title>onokatio</title>
   </head>
@@ -54,9 +51,9 @@
 
 		const hashChangeEvent = () => {
 			if (location.hash === ('#/') || location.hash === ('')) {
-				UpdateMarkdown('https://raw.githubusercontent.com/onokatio-blog/blog/master/index.md')
+				UpdateMarkdown('https://blog.katio.net/blog/index.md')
 			} else if (location.hash.startsWith('#/page/')) {
-				UpdateMarkdown('https://raw.githubusercontent.com/onokatio-blog/blog/master/' + location.hash.slice(7) + '.md')
+				UpdateMarkdown('https://blog.katio.net/blog/' + location.hash.slice(7) + '.md')
 			}
 		}
 		window.onhashchange = hashChangeEvent
