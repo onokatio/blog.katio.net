@@ -1,64 +1,71 @@
 <!DOCTYPE html>
-<html lang='en'>
-  <head>
+<html lang="ja">
+ <head>
     <meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
-    <meta content='en' http-equiv='Content-Language'>
     <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
-    <meta content='onokatio,katio,おのかちお,かちお' name='keywords'>
     <meta content='おのかちおの個人サイトです。主に自己紹介と成果物、その他サービスへのリンクを掲載しています。' name='description'>
     <meta content='onokatio' name='auhthor'>
     <meta content='onokatio' name='application-name'>
-    <link crossorigin='anonymous' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ' rel='stylesheet'>
+    <link href='https://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='main.css' rel='stylesheet'>
+
+	<!-- preload -->
+	<link rel="preload" href="https://raw.githubusercontent.com/onokatio/blog/master/index.md" as="fetch" crossorigin>
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" as="script" crossorigin>
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" as="script" crossorigin>
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" as="script" crossorigin>
+	<!-- /preload -->
     <title>onokatio</title>
   </head>
   <body>
-    <nav class='navbar navbar-toggleable-md navbar-light bg-faded'>
-      <button class='navbar-toggler navbar-toggler-right' data-target='#navbar' data-toggle='collapse' type='button'>
-        <span class='navbar-toggler-icon'></span>
-      </button>
-      <a class='navbar-brand' href='./'>onokatio</a>
-      <div class='collapse navbar-collapse' id='navbar'>
-        <ul class='navbar-nav mr-auto'>
-          <li class='nav-item'>
-            <a class='nav-link' href='skill.html'>Skill</a>
-          </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='link.html'>Link</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <picture class='rounded mx-auto d-block m-5' style='max-width: 225px;width: 34vw;'>
-      <source srcset='https://raw.githubusercontent.com/onokatio/onokatio.github.io/master/katio.webp' type='image/webp'>
-      <img alt='katio cat' src='katio.jpg'>
-    </picture>
-    <table class='table table-striped' style='max-width: 655px;margin: auto;'>
-      <tbody>
-        <tr>
-          <td>Name</td>
-          <td>onokatio</td>
-        </tr>
-        <tr>
-          <td>Age</td>
-          <td>0x11</td>
-        </tr>
-        <tr>
-          <td>Gender</td>
-          <td>Male</td>
-        </tr>
-        <tr>
-          <td>Place</td>
-          <td>Tokyo Japan</td>
-        </tr>
-        <tr>
-          <td>Favorite color</td>
-          <td>Sky blue</td>
-        </tr>
-      </tbody>
-    </table>
-    <script async crossorigin='anonymous' defer integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n' src='https://code.jquery.com/jquery-3.1.1.slim.min.js'></script>
-    <script async crossorigin='anonymous' defer integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb' src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js'></script>
-    <script async crossorigin='anonymous' defer integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+	<div class="container">
+			<div id="markdown"></div>
+			<hr>
+			<a id='gobacklink' style='display:none' href='#/'>Back to top</a>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" integrity="sha384-KpuxVjTC2hfOkg5KV3jSdx1eA6xy0PGS0wNfDrwf4sZBnZdzlIsnkH+LzLkavmH7" crossorigin="anonymous"></script>
+
+	<script>
+		const converter = new showdown.Converter()
+		converter.setOption('simplifiedAutoLink','true')
+		converter.setOption('strikethrough','true')
+		converter.setOption('tables','true')
+		converter.setOption('tablesHeaderId','true')
+		converter.setOption('tasklists','true')
+		converter.setOption('simpleLineBreaks','true')
+		converter.setOption('emoji','true')
+		converter.setOption('metadata','true')
+
+		const UpdateMarkdown = markdownUrl => {
+			document.getElementById("markdown").textContent = 'loading ...'
+			const fetchMarkdown = async () => {
+				const markdown = await fetch(markdownUrl)
+				const json = await markdown.text()
+				const html = converter.makeHtml(json)
+
+				document.getElementById("markdown").textContent = ''
+				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
+
+				document.getElementById('gobacklink').style.display = 'inline'
+			}
+			fetchMarkdown()
+		}
+
+		const hashChangeEvent = () => {
+			if (location.hash === ('#/') || location.hash === ('')) {
+				UpdateMarkdown('https://raw.githubusercontent.com/onokatio/blog/master/index.md')
+			} else if (location.hash.startsWith('#/page/')) {
+				UpdateMarkdown('https://raw.githubusercontent.com/onokatio/blog/master/' + location.hash.slice(7) + '.md')
+			}
+		}
+		window.onhashchange = hashChangeEvent
+
+		hashChangeEvent()
+	</script>
+
+	<!-- Bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
   </body>
 </html>
