@@ -54,9 +54,9 @@
 
 		const hashChangeEvent = () => {
 			if (location.hash === ('#/') || location.hash === ('')) {
-				UpdateMarkdown('https://raw.githubusercontent.com/onokatio/blog/master/index.md')
+				UpdateMarkdown('https://raw.githubusercontent.com/onokatio-blog/blog/master/index.md')
 			} else if (location.hash.startsWith('#/page/')) {
-				UpdateMarkdown('https://raw.githubusercontent.com/onokatio/blog/master/' + location.hash.slice(7) + '.md')
+				UpdateMarkdown('https://raw.githubusercontent.com/onokatio-blog/blog/master/' + location.hash.slice(7) + '.md')
 			}
 		}
 		window.onhashchange = hashChangeEvent
