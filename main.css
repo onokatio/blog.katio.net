@@ -41,10 +41,3 @@ a {
 #markdown h1:not(:first-child), #markdown h2, #markdown h3 {
 	margin-top: 3rem;
 }
-
-#markdown pre {
-	background-color: #333;
-	color: white;
-	padding: 1rem;
-}
-
