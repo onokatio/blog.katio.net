@@ -18,7 +18,7 @@
 	<div class="container">
 			<div id="markdown"></div>
 			<hr>
-			<a id='gobacklink' style='display:none' href='#/'>Back to top</a>
+			<a id='gobacklink' href='#/'>Back to top</a>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" integrity="sha384-KpuxVjTC2hfOkg5KV3jSdx1eA6xy0PGS0wNfDrwf4sZBnZdzlIsnkH+LzLkavmH7" crossorigin="anonymous"></script>
@@ -43,8 +43,6 @@
 
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
-
-				document.getElementById('gobacklink').style.display = 'inline'
 			}
 			fetchMarkdown()
 		}
