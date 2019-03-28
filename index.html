@@ -23,25 +23,15 @@
 			<p class="text-right">Copyright (c) 2019 onokatio</p>
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" integrity="sha384-KpuxVjTC2hfOkg5KV3jSdx1eA6xy0PGS0wNfDrwf4sZBnZdzlIsnkH+LzLkavmH7" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js" integrity="sha384-EiOGSCEMZcrL0lbddeRRJEF8+qWFNoCH1guk5GrDVcojQEy4XZMchqvucM+f1WCG" crossorigin="anonymous"></script>
 
 	<script>
-		const converter = new showdown.Converter()
-		converter.setOption('simplifiedAutoLink','true')
-		converter.setOption('strikethrough','true')
-		converter.setOption('tables','true')
-		converter.setOption('tablesHeaderId','true')
-		converter.setOption('tasklists','true')
-		converter.setOption('simpleLineBreaks','true')
-		converter.setOption('emoji','true')
-		converter.setOption('metadata','true')
-
 		const UpdateMarkdown = markdownUrl => {
 			document.getElementById("markdown").textContent = 'loading ...'
 			const fetchMarkdown = async () => {
 				const markdown = await fetch(markdownUrl)
-				const json = await markdown.text()
-				const html = converter.makeHtml(json)
+				const text = await markdown.text()
+				const html = marked(text)
 
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
