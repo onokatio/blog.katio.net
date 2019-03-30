@@ -24,6 +24,30 @@ a {
 }
 }
 
+@media (min-width: 576px){
+.card-columns {
+	column-count: 1 !important;
+	-webkit-column-count: 1 !important;
+	--moz-column-count: 1 !important;
+}
+}
+
+@media (min-width: 768px){
+.card-columns {
+	column-count: 2 !important;
+	-webkit-column-count: 2 !important;
+	--moz-column-count: 2 !important;
+}
+}
+
+@media (min-width: 992px){
+.card-columns {
+	column-count: 3 !important;
+	-webkit-column-count: 3 !important;
+	--moz-column-count: 3 !important;
+}
+}
+
 .container {
 	margin-bottom: 2rem;
 }
