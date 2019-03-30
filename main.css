@@ -51,6 +51,14 @@ a {
 .jumbotron {
 	padding-top: 2rem !important;
 	padding-bottom: 2rem !important;
+	background-color: white !important;
+	border-left: 1px solid rgba(0,0,0,.125) !important;
+}
+
+.card {
+	border: none !important;
+	border-left: 1px solid rgba(0,0,0,.125) !important;
+	border-radius: 0 !important;
 }
 
 .container {
