@@ -48,11 +48,16 @@ a {
 }
 }
 
+.jumbotron {
+	padding-top: 2rem !important;
+	padding-bottom: 2rem !important;
+}
+
 .container {
 	margin-bottom: 2rem;
 }
 
-#markdown h1, #markdown h2, #markdown h3 {
+#markdown h1:not(#jumbotron > h1), #markdown h2:not(#jumbotron > h2), #markdown h3:not(#jumbotron > h3) {
 	font-weight: 100;
 	margin-bottom: 2rem;
 }
@@ -62,6 +67,6 @@ a {
 	font-size: 4rem;
 }
 
-#markdown h1:not(:first-child), #markdown h2, #markdown h3 {
+#markdown h1:not(:first-child,#jumbotron > h1), #markdown h2:not(#jumbotron > h2), #markdown h3:not(#jumbotron > h3) {
 	margin-top: 3rem;
 }
