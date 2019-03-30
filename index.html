@@ -18,16 +18,15 @@
 	<div class="container">
 			<p id="markdown"></p>
 			<hr>
-			<p class="text-left">
-				<a id='gobacklink' href='#/'>Back to top</a>
-			</p>
-			<p class="text-right">Copyright (c) 2019 onokatio</p>
+			<p class="text-right"><a id="editgithub" href="#">Pull Request this page on github</a></p>
+			<p class="text-left"><a id='gobacklink' href='#/'>Back to top</a></p>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js" integrity="sha384-EiOGSCEMZcrL0lbddeRRJEF8+qWFNoCH1guk5GrDVcojQEy4XZMchqvucM+f1WCG" crossorigin="anonymous"></script>
 
 	<script>
 		const UpdateMarkdown = markdownUrl => {
+			document.getElementById("editgithub").setAttribute("href","https://github.com/onokatio-blog/blog/blob/master/" + location.hash.slice(7) + ".md")
 			document.getElementById("markdown").textContent = 'loading ...'
 			const fetchMarkdown = async () => {
 				const markdown = await fetch(markdownUrl)
