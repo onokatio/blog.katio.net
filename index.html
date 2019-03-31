@@ -11,14 +11,16 @@
     <link rel="stylesheet" href='main.css'>
 
 	<!-- preload -->
-	<link rel="preload" href="https://blog.katio.net/blog/index.md" as="fetch" crossorigin>
 	<script>
-		const preloadLink = document.createElement("link");
-		preloadLink.rel = "preload";
-		preloadLink.href = 'https://blog.katio.net/blog/' + location.hash.slice(7) + '.md'
-		preloadLink.as = "fetch";
-		preloadLink.crossorigin = 'anonymous';
-		document.head.appendChild(preloadLink);
+		const preloadLink = document.createElement("link")
+		if (location.hash === ('#/') || location.hash === ('')) {
+			preloadLink.href = 'https://blog.katio.net/blog/index.md'
+		} else {
+			preloadLink.href = 'https://blog.katio.net/blog/' + location.hash.slice(7) + '.md'
+		}
+		preloadLink.as = "fetch"
+		preloadLink.setAttribute('crossorigin','anonymous')
+		document.head.appendChild(preloadLink)
 	</script>
 	<!-- /preload -->
     <title>onokatio</title>
