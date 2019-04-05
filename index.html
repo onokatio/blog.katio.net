@@ -37,13 +37,22 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js" integrity="sha384-EiOGSCEMZcrL0lbddeRRJEF8+qWFNoCH1guk5GrDVcojQEy4XZMchqvucM+f1WCG" crossorigin="anonymous"></script>
 
 	<script>
+		const renderer = new marked.Renderer()
+
+		// image width override
+		renderer.image = function(e, t, n) {
+			var r =
+				'<img width="100%" src="' + e + '" alt="' + n + '"';
+			return t && (r += ' title="' + t + '"'), r += ">"
+		}
+
 		const UpdateMarkdown = markdownUrl => {
 			document.getElementById("editgithub").setAttribute("href","https://github.com/onokatio-blog/blog/blob/master/" + location.hash.slice(7) + ".md")
 			document.getElementById("markdown").textContent = 'loading ...'
 			const fetchMarkdown = async () => {
 				const markdown = await fetch(markdownUrl)
 				const text = await markdown.text()
-				const html = marked(text)
+				const html = marked(text, { renderer: renderer })
 
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
