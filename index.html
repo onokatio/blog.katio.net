@@ -90,7 +90,7 @@
 		hashChangeEvent()
 		pathChangeEvent(location.href)
 
-		document.querySelectorAll('a').forEach( element => {
+		forEach.call(document.getElementsByTagName('a'), element => {
 			element.addEventListener('click', pathChangeEvent(element.href) )
 		})
 
