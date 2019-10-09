@@ -55,6 +55,9 @@
 
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
+				Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
+					element.addEventListener('click', pathChangeEvent(element.href) )
+				})
 			}
 			fetchMarkdown()
 		}
@@ -97,9 +100,6 @@
 		hashChangeEvent()
 		pathChangeEvent(location.href)()
 
-		Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
-			element.addEventListener('click', pathChangeEvent(element.href) )
-		})
 
 	</script>
 
