@@ -75,7 +75,7 @@
 		// pathString gets full URL.
 		const pathChangeEvent = (pathString) => {
 			return () => {
-				if (pathString.startsWith('https://blog.katio.net/page/') || pathString === 'https://blog.katio.net/')) {
+				if (pathString.startsWith('https://blog.katio.net/page/') || pathString === 'https://blog.katio.net/') {
 					// stop jump and rewrite dom directly.
 					filename = location.pathname.slice(6)
 					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
