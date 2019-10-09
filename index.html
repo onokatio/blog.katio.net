@@ -76,6 +76,10 @@
 		}
 		window.onhashchange = hashChangeEvent
 
+		document.getElementsByTagName('a').forEach( element => {
+			element.addEventListener('click', hashChangeEvent)
+		})
+
 		hashChangeEvent()
 	</script>
 
