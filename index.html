@@ -76,14 +76,17 @@
 		const pathChangeEvent = (pathString) => {
 			return () => {
 				if ( pathString.startsWith('https://blog.katio.net/page/') ) {
+					console.log("internal atag");
 					// stop jump and rewrite dom directly.
 					filename = location.pathname.slice(6)
 					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
 					return false;
 				} else if (pathString === 'https://blog.katio.net/') {
+					console.log("intelnal g atag");
 					UpdateMarkdown('https://static.katio.net/markdown/index.md')
 					return false;
 				} else {
+					console.log("external atag");
 					return true; // jump nomally.
 				}
 			}
