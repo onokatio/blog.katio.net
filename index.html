@@ -75,7 +75,7 @@
 		// pathString gets full URL.
 		const pathChangeEvent = (pathString) => {
 			return () => {
-				if (pathString.startsWith('https://blog.katio.net/page/')) {
+				if (pathString.startsWith('https://blog.katio.net/page/') || pathString === 'https://blog.katio.net/')) {
 					// stop jump and rewrite dom directly.
 					filename = location.pathname.slice(6)
 					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
@@ -89,7 +89,7 @@
 		window.onhashchange = hashChangeEvent
 
 		hashChangeEvent()
-		pathChangeEvent(location.href)
+		pathChangeEvent(location.href)()
 
 		Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
 			element.addEventListener('click', pathChangeEvent(element.href) )
