@@ -64,7 +64,8 @@
 				if ( location.hash.startsWith('#/page/')) {
 					// TODO: check filename string
 					filename = location.hash.slice(7)
-					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+					//UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+					location.href = "/page/" + filename
 				} else {
 					UpdateMarkdown('https://static.katio.net/markdown/index.md')
 				}
