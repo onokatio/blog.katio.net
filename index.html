@@ -72,8 +72,8 @@
 			}
 		}
 
-		const pathChangeEvent = (pathString) = {
-			if ( ! location.href.startWith('https://blog.katio.net/') ){ return true; } // jump nomally.
+		const pathChangeEvent = (pathString) => {
+			if ( ! location.href.startWith('https://blog.katio.net/') ) return true; // jump nomally.
 
 			if (location.pathname.startsWith('/page/')) {
 				// stop jump and rewrite dom directly.
