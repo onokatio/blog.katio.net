@@ -76,11 +76,12 @@
 		}
 		window.onhashchange = hashChangeEvent
 
+		hashChangeEvent()
+
 		document.querySelectorAll('a').forEach( element => {
 			element.addEventListener('click', hashChangeEvent)
 		})
 
-		hashChangeEvent()
 	</script>
 
 	<!-- Bootstrap -->
