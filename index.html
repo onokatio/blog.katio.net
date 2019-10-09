@@ -46,17 +46,21 @@
 		}
 
 		// pathString gets full URL.
-		const pathChangeEvent = (pathString) => {
+		const pathChangeEvent = (element) => {
 			return () => {
-				if ( pathString.startsWith('https://blog.katio.net/page/') ) {
+				if ( element.href.startsWith('https://blog.katio.net/page/') ) {
 					console.log("internal atag");
 					// stop jump and rewrite dom directly.
 					filename = location.pathname.slice(6)
 					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+					element.preventDefault()
+					element.stopPropagation()
 					return false;
-				} else if (pathString === 'https://blog.katio.net/') {
+				} else if (element.href === 'https://blog.katio.net/') {
 					console.log("intelnal g atag");
 					UpdateMarkdown('https://static.katio.net/markdown/index.md')
+					element.preventDefault()
+					element.stopPropagation()
 					return false;
 				} else {
 					console.log("external atag");
@@ -75,8 +79,10 @@
 
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
+
 				Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
-					element.addEventListener('click', pathChangeEvent(element.href) )
+					console.log(element)
+					element.addEventListener('click', pathChangeEvent(element) )
 				})
 			}
 			fetchMarkdown()
@@ -99,7 +105,6 @@
 		window.onhashchange = hashChangeEvent
 
 		hashChangeEvent()
-		pathChangeEvent(location.href)()
 
 
 	</script>
