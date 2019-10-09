@@ -80,8 +80,9 @@
 					filename = location.pathname.slice(6)
 					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
 					return false;
+				} else {
+					return true; // jump nomally.
 				}
-				return true; // jump nomally.
 			}
 		}
 
