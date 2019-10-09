@@ -69,17 +69,27 @@
 				} else {
 					UpdateMarkdown('https://static.katio.net/markdown/index.md')
 				}
-			} else if (location.pathname.startsWith('/page/')) {
-				filename = location.pathname.slice(6)
-				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
 			}
 		}
+
+		const pathChangeEvent = (pathString) = {
+			if ( ! location.href.startWith('https://blog.katio.net/') ) return true; // jump nomally.
+
+			if (location.pathname.startsWith('/page/')) {
+				// stop jump and rewrite dom directly.
+				filename = location.pathname.slice(6)
+				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+				return false;
+			}
+		}
+
 		window.onhashchange = hashChangeEvent
 
 		hashChangeEvent()
+		pathChangeEvent(location.href)
 
 		document.querySelectorAll('a').forEach( element => {
-			element.addEventListener('click', hashChangeEvent)
+			element.addEventListener('click', () => pathChangeEvent(element.href) )
 		})
 
 	</script>
