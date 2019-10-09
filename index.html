@@ -51,7 +51,7 @@
 				if ( element.href.startsWith('https://blog.katio.net/page/') ) {
 					console.log("internal atag");
 					// stop jump and rewrite dom directly.
-					filename = location.pathname.slice(6)
+					filename = element.getAttribute('href').slice(6)
 					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
 					event.preventDefault()
 					event.stopPropagation()
