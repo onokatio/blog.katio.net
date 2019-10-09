@@ -76,7 +76,7 @@
 		}
 		window.onhashchange = hashChangeEvent
 
-		Array.prototype.forEach.call(window.getElementsByTagName('a'), element => {
+		window.querySelectorAll('a').forEach( element => {
 			element.addEventListener('click', hashChangeEvent)
 		})
 
