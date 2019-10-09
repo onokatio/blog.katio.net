@@ -74,13 +74,14 @@
 
 		// pathString gets full URL.
 		const pathChangeEvent = (pathString) => {
-			if ( ! location.href.startsWith('https://blog.katio.net/') ) return true; // jump nomally.
-
-			if (pathString.startsWith('https://blog.katio.net/page/')) {
-				// stop jump and rewrite dom directly.
-				filename = location.pathname.slice(6)
-				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
-				return false;
+			return () => {
+				if (pathString.startsWith('https://blog.katio.net/page/')) {
+					// stop jump and rewrite dom directly.
+					filename = location.pathname.slice(6)
+					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+					return false;
+				}
+				return true; // jump nomally.
 			}
 		}
 
@@ -90,7 +91,7 @@
 		pathChangeEvent(location.href)
 
 		document.querySelectorAll('a').forEach( element => {
-			element.addEventListener('click', () => pathChangeEvent(element.href) )
+			element.addEventListener('click', pathChangeEvent(element.href) )
 		})
 
 	</script>
