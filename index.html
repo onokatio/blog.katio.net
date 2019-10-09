@@ -91,7 +91,7 @@
 		hashChangeEvent()
 		pathChangeEvent(location.href)
 
-		Array.prototype.forEach.call(document.getElementsByTagName('a'), element => {
+		Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
 			element.addEventListener('click', pathChangeEvent(element.href) )
 		})
 
