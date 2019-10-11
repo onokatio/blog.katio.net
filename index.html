@@ -48,22 +48,26 @@
 		// pathString gets full URL.
 		const pathChangeEvent = (element) => {
 			return (event) => {
-				if ( element.href.startsWith('https://blog.katio.net/page/') ) {
-					// stop jump and rewrite dom directly.
-					history.pushState(null, null, /markdown/ + filename + '.md')
-					filename = element.getAttribute('href').slice(6)
-					UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
-					event.preventDefault()
-					event.stopPropagation()
-					return false;
-				} else if (element.href === 'https://blog.katio.net/') {
-					UpdateMarkdown('https://static.katio.net/markdown/index.md')
-					event.preventDefault()
-					event.stopPropagation()
-					return false;
-				} else {
-					return true; // jump nomally.
-				}
+				event.preventDefault()
+				event.stopPropagation()
+
+				history.pushState(null, null, /markdown/ + filename + '.md')
+
+				UpdateDomFromUrl()
+			}
+		}
+
+		const UpdateDomFromUrl = () => {
+			// get url path and rewrite dom directly. If it doesn't match any rule, return 404 pages.
+			pathname = location.pathname
+			if ( pathname.startsWith('/page/') ) {
+				filename = element.getAttribute('href').slice(6)
+				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+			} else if ( pathname === '/') {
+				UpdateMarkdown('https://static.katio.net/markdown/index.md')
+			} else {
+				// TODO: return 404 page.
+				return true;
 			}
 		}
 
