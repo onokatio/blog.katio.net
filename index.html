@@ -47,23 +47,35 @@
 			return t && (r += ' title="' + t + '"'), r += ">"
 		}
 
-		// pathString gets full URL.
-		const pathChangeEvent = (element) => {
-			return (event) => {
+		const aTagClickEvent = (element,event) => {
 				event.preventDefault()
 				event.stopPropagation()
+				if( element.pathname.startsWith('/page/') ){
+					history.pushState(null, null, element.pathname)
+					pathChangeEvent()
+				}else{
+					location.href = element.href
+				}
+		}
 
-				history.pushState(null, null, /markdown/ + filename + '.md')
+		const pathChangeEvent = () => {
+			UpdateDomFromUrl()
+		}
 
-				UpdateDomFromUrl()
+		const hashChangeEvent = () => {
+			if (location.pathname === "/" && location.hash.startsWith('#/page/')) {
+				filename = location.hash.slice(7)
+				location.href = "/page/" + filename
 			}
 		}
+
 
 		const UpdateDomFromUrl = () => {
 			// get url path and rewrite dom directly. If it doesn't match any rule, return 404 pages.
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
-				filename = element.getAttribute('href').slice(6)
+				// TODO: check filename string
+				filename = location.pathname.slice(6)
 				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
 			} else if ( pathname === '/') {
 				UpdateMarkdown('https://static.katio.net/markdown/index.md')
@@ -85,30 +97,16 @@
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 
 				Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
-					element.addEventListener('click', pathChangeEvent(element) )
+					element.addEventListener('click', aTagClickEvent.bind(null,element) )
 				})
 			}
 			fetchMarkdown()
 		}
 
-		const hashChangeEvent = () => {
-			if (location.pathname === "/") {
-				if ( location.hash.startsWith('#/page/')) {
-					// TODO: check filename string
-					filename = location.hash.slice(7)
-					//UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
-					location.href = "/page/" + filename
-				} else {
-					UpdateMarkdown('https://static.katio.net/markdown/index.md')
-				}
-			}
-		}
-
 
 		window.onhashchange = hashChangeEvent
 
-		hashChangeEvent()
-
+		UpdateDomFromUrl()
 
 	</script>
 
