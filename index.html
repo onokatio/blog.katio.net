@@ -86,7 +86,7 @@
 		}
 
 		const UpdateMarkdown = markdownUrl => {
-			document.getElementById("editgithub").setAttribute("href","https://github.com/onokatio-blog/blog/blob/master/" + location.hash.slice(7) + ".md")
+			document.getElementById("editgithub").setAttribute("href","https://github.com/onokatio-blog/blog/blob/master/markdown/" + location.pathname.slice(6) + ".md")
 			document.getElementById("markdown").textContent = 'loading ...'
 			const fetchMarkdown = async () => {
 				const markdown = await fetch(markdownUrl)
