@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
  <head>
-    <meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+    <meta charset='UTF-8'>
     <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
     <meta content='onokatio' name='auhthor'>
     <meta content='onokatio' name='application-name'>
@@ -48,26 +48,25 @@
 		}
 
 		const aTagClickEvent = (element,event) => {
-				event.preventDefault()
-				event.stopPropagation()
 				if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-					history.pushState(null, null, element.pathname)
-					pathChangeEvent()
+					event.preventDefault()
+					event.stopPropagation()
+					history.pushState(element.pathname, null, element.pathname)
+					UpdateDomFromUrl()
+					return false;
 				}else{
 					location.href = element.href
 				}
 		}
 
-		const pathChangeEvent = () => {
-			UpdateDomFromUrl()
-		}
-
+		/*
 		const hashChangeEvent = () => {
 			if (location.pathname === "/" && location.hash.startsWith('#/page/')) {
 				filename = location.hash.slice(7)
 				location.href = "/page/" + filename
 			}
 		}
+		*/
 
 
 		const UpdateDomFromUrl = () => {
@@ -96,15 +95,19 @@
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 
-				Array.prototype.forEach.call(document.getElementsByTagName('a'), (element) => {
+				Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
 					element.addEventListener('click', aTagClickEvent.bind(null,element) )
 				})
+				document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
 			}
 			fetchMarkdown()
 		}
 
+		goback = document.getElementById('gobacklink')
+		goback.addEventListener('click', aTagClickEvent.bind(null,goback) )
 
-		window.onhashchange = hashChangeEvent
+		//window.onhashchange = hashChangeEvent
+		window.onpopstate = UpdateDomFromUrl
 
 		UpdateDomFromUrl()
 
