@@ -32,7 +32,7 @@
 			<p id="markdown"></p>
 			<hr>
 			<p class="text-right"><a id="editgithub" href="#">Pull Request this page on github</a></p>
-			<p class="text-left"><a id='gobacklink' href='#/'>Go home</a></p>
+			<p class="text-left"><a id='gobacklink' href='/'>Go home</a></p>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js" integrity="sha384-EiOGSCEMZcrL0lbddeRRJEF8+qWFNoCH1guk5GrDVcojQEy4XZMchqvucM+f1WCG" crossorigin="anonymous"></script>
@@ -50,7 +50,7 @@
 		const aTagClickEvent = (element,event) => {
 				event.preventDefault()
 				event.stopPropagation()
-				if( element.pathname.startsWith('/page/') ){
+				if( element.pathname.startsWith('/page/') || element.pathname === '/'){
 					history.pushState(null, null, element.pathname)
 					pathChangeEvent()
 				}else{
