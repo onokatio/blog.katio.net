@@ -81,38 +81,30 @@
 			// get url path and rewrite dom directly. If it doesn't match any rule, return 404 pages.
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
-				filename = location.pathname.slice(6)
-				if ( ! filename.match( /^[a-zA-Z0-9-0_\-]+$/ ) ){
+				filename = '/markdown/' + location.pathname.slice(6) + '.md'
+				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ){
 					UpdateMarkdown('https://static.katio.net/markdown/404.md')
+					return;
 				}
-
-				document.getElementById("editgithub").setAttribute("href",
-					"https://github.com/onokatio-blog/blog/blob/master/markdown/" + location.pathname.slice(6) + ".md")
-
-				document.getElementById("markdown").textContent = 'loading ...'
-
-				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md').then( () => {
-					document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
-					Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
-						if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-							element.addEventListener('click', smoothJump )
-						}
-					})
-				})
-
-
 			} else if ( pathname === '/') {
-				UpdateMarkdown('https://static.katio.net/markdown/index.md').then( () => {
-					document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
-					Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
-						if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-							element.addEventListener('click', smoothJump )
-						}
-					})
-				})
+				filename = '/markdown/index.md'
 			} else {
-				UpdateMarkdown('https://static.katio.net/markdown/404.md')
+				filename = '/markdown/404.md'
 			}
+
+			document.getElementById("editgithub").setAttribute("href",
+				"https://github.com/onokatio-blog/blog/blob/master/" + filename)
+			document.getElementById("markdown").textContent = 'loading ...'
+
+			UpdateMarkdown('https://static.katio.net/' + filename).then( () => {
+				document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
+				Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
+					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
+						element.addEventListener('click', smoothJump )
+					}
+				})
+			})
+
 		}
 
 		const UpdateMarkdown = markdownUrl => {
