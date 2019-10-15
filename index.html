@@ -82,10 +82,7 @@
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
 				filename = '/markdown/' + location.pathname.slice(6) + '.md'
-				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ){
-					UpdateMarkdown('https://static.katio.net/markdown/404.md')
-					return;
-				}
+				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = '/markdown/404.md'
 			} else if ( pathname === '/') {
 				filename = '/markdown/index.md'
 			} else {
@@ -96,25 +93,22 @@
 				"https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...'
 
-			UpdateMarkdown('https://static.katio.net/' + filename).then( () => {
-				document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
-				Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
-					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-						element.addEventListener('click', smoothJump )
-					}
-				})
-			})
-
-		}
-
-		const UpdateMarkdown = markdownUrl => {
-			return fetch(markdownUrl)
+			// handle 404 from fetch
+			fetch('https://static.katio.net/' + filename)
 				.then( (markdown) => markdown.text() )
 				.then ( (text) => {
 					html = marked(text, { renderer: renderer })
 					document.getElementById("markdown").textContent = ''
 					document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
+				}) .then( () => {
+					document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
+					Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
+						if( element.pathname.startsWith('/page/') || element.pathname === '/'){
+							element.addEventListener('click', smoothJump )
+						}
+					})
 				})
+
 		}
 
 		goback = document.getElementById('gobacklink').addEventListener('click', smoothJump )
