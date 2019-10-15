@@ -77,27 +77,27 @@
 		*/
 
 
-		const UpdateDomFromUrl = () => {
+		const UpdateDomFromUrl = async () => {
 			// get url path and rewrite dom directly. If it doesn't match any rule, return 404 pages.
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
 				filename = location.pathname.slice(6)
 				if ( ! filename.match( /^[a-zA-Z0-9-0_\-]+$/ ) ){
 					UpdateMarkdown('https://static.katio.net/markdown/404.md')
-					return;
 				}
-				UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+				await UpdateMarkdown('https://static.katio.net/markdown/' + filename + '.md')
+				await (async () => {
+					document.getElementById("editgithub").setAttribute("href","https://github.com/onokatio-blog/blog/blob/master/markdown/" + location.pathname.slice(6) + ".md")
+					document.getElementById("markdown").textContent = 'loading ...'
+				})()
 			} else if ( pathname === '/') {
 				UpdateMarkdown('https://static.katio.net/markdown/index.md')
 			} else {
 				UpdateMarkdown('https://static.katio.net/markdown/404.md')
-				return true;
 			}
 		}
 
-		const UpdateMarkdown = markdownUrl => {
-			document.getElementById("editgithub").setAttribute("href","https://github.com/onokatio-blog/blog/blob/master/markdown/" + location.pathname.slice(6) + ".md")
-			document.getElementById("markdown").textContent = 'loading ...'
+		const UpdateMarkdown = async markdownUrl => {
 			const fetchMarkdown = async () => {
 				const markdown = await fetch(markdownUrl)
 				const text = await markdown.text()
