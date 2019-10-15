@@ -46,6 +46,7 @@
 			<p class="text-right"><a id="editgithub" href="#">Pull Request this page on github</a></p>
 			<p class="text-left"><a id='gobacklink' href='/'>Go home</a></p>
 	</div>
+	<script src="/highlight/highlight.pack.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js" integrity="sha384-EiOGSCEMZcrL0lbddeRRJEF8+qWFNoCH1guk5GrDVcojQEy4XZMchqvucM+f1WCG" crossorigin="anonymous"></script>
 
@@ -107,6 +108,7 @@
 							element.addEventListener('click', smoothJump )
 						}
 					})
+					hljs.initHighlightingBlock(document.getElementById('markdown'))
 				})
 
 		}
@@ -125,7 +127,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous" defer></script>
 	-->
-	<script src="highlight/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
