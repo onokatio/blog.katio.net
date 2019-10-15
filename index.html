@@ -59,16 +59,12 @@
 			return t && (r += ' title="' + t + '"'), r += ">"
 		}
 
-		const aTagClickEvent = (event) => {
-				if( event.target.pathname.startsWith('/page/') || event.target.pathname === '/'){
-					event.preventDefault()
-					event.stopPropagation()
-					history.pushState(null, null, event.target.pathname)
-					UpdateDomFromUrl()
-					return false;
-				}else{
-					location.href = event.target.href
-				}
+		const smoothJump = (event) => {
+			event.preventDefault()
+			event.stopPropagation()
+			history.pushState(null, null, event.target.pathname)
+			UpdateDomFromUrl()
+			return false;
 		}
 
 		/*
@@ -108,15 +104,16 @@
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 
 				Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
-					element.addEventListener('click', aTagClickEvent )
+					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
+						element.addEventListener('click', smoothJump )
+					}
 				})
 				document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
 			}
 			fetchMarkdown()
 		}
 
-		goback = document.getElementById('gobacklink')
-		goback.addEventListener('click', aTagClickEvent )
+		goback = document.getElementById('gobacklink').addEventListener('click', smoothJump )
 
 		//window.onhashchange = hashChangeEvent
 		window.onpopstate = UpdateDomFromUrl
