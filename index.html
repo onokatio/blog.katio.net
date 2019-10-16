@@ -5,8 +5,10 @@
 	<!-- preload -->
 	<script>
 		if ( location.pathname.startsWith('/page/') && location.pathname.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ){
+			console.log('start preload')
 			const preloadLink = document.createElement("link")
 			preloadLink.href = 'https://static.katio.net/markdown/' + location.pathname.slice(6) + '.md'
+			preloadLink.rel = "preload"
 			preloadLink.as = "fetch"
 			preloadLink.setAttribute('crossorigin','anonymous')
 			document.head.appendChild(preloadLink)
