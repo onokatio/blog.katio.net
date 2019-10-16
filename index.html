@@ -109,7 +109,7 @@
 			document.getElementById("markdown").textContent = 'loading ...'
 
 			// handle 404 from fetch
-			fetch('https://static.katio.net/' + filename)
+			const markdownPromise = fetch('https://static.katio.net/' + filename)
 				.then( (markdown) => markdown.text() )
 				.then ( (text) => {
 					html = marked(text, { renderer: renderer })
@@ -123,6 +123,38 @@
 						}
 					})
 				})
+			if ( pathname === '/') markdownPromise.then( () => fetch('https://static.katio.net/dynamic/markdownlist') )
+					.then( (response) => response.json() )
+					.then( (json) => {
+						json.map( (contentAndFilename) => {
+
+							const articleTitle = document.createElement("h5")
+							articleTitle.className = "card-title"
+							articleTitle.textContent = "blank title"
+
+							const articleSummary = document.createElement("p")
+							articleSummary.className = "card-text"
+							articleSummary.textContent = contentAndFilename.summary + '...'
+
+							const articleLink = document.createElement("a")
+							articleLink.className = "card-link"
+							articleLink.href = "/page/" + contentAndFilename.filename
+							articleLink.textContent = "Read more"
+
+							const articleBody = document.createElement("div")
+							articleBody.className = "card-body"
+							articleBody.appendChild(articleTitle)
+							articleBody.appendChild(articleSummary)
+							articleBody.appendChild(articleLink)
+
+							const card = document.createElement("div")
+							card.className = "card"
+							card.appendChild(articleBody)
+
+							document.getElementById("articleList").appendChild(card)
+
+						})
+					})
 
 		}
 
