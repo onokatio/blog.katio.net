@@ -126,6 +126,7 @@
 			if ( pathname === '/') markdownPromise.then( () => fetch('https://static.katio.net/dynamic/markdownlist') )
 					.then( (response) => response.json() )
 					.then( (json) => {
+						json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
 						json.map( (contentAndFilename) => {
 
 							const articleTitle = document.createElement("h5")
@@ -138,7 +139,7 @@
 
 							const articleLink = document.createElement("a")
 							articleLink.className = "card-link"
-							articleLink.href = "/page/" + contentAndFilename.filename
+							articleLink.href = "/page/" + contentAndFilename.filename.replace(/\.md$/,'')
 							articleLink.textContent = "Read more"
 
 							const articleBody = document.createElement("div")
