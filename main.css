@@ -79,3 +79,16 @@ a {
 #markdown h1:not(:first-child,#jumbotron > h1), #markdown h2:not(#jumbotron > h2), #markdown h3:not(#jumbotron > h3) {
 	margin-top: 3rem;
 }
+
+.card-text {
+	/* rem is font-size but there is some space from line height
+	 * so multiplying line-height value (*1.5).
+	 */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	/*max-height: calc(3rem * 1.5);
+	white-space: nowrap;
+	text-overflow: ellipsis;*/
+}
