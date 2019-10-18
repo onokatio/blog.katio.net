@@ -108,7 +108,7 @@
 				"https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...'
 
-			// handle 404 from fetch
+			// TODO: handle 404 when fetch failed
 			const markdownPromise = fetch('https://static.katio.net/' + filename)
 				.then( (markdown) => markdown.text() )
 				.then ( (text) => {
@@ -127,7 +127,7 @@
 					.then( (response) => response.json() )
 					.then( (json) => {
 						json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
-						json.map( (contentAndFilename) => {
+						json.forEach( (contentAndFilename) => {
 
 							const articleTitle = document.createElement("h5")
 							articleTitle.className = "card-title"
