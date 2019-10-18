@@ -28,6 +28,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js" integrity="sha384-EiOGSCEMZcrL0lbddeRRJEF8+qWFNoCH1guk5GrDVcojQEy4XZMchqvucM+f1WCG" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha384-Lq4dkOUVSNElT8uHCChL3Wlg1H2PWo8qxHqROqOMeVSHAtBe0lWY8KT+yJwHNQ2Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/lib/js/joypixels.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/extras/css/joypixels.min.css"/>
 
     <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
 
@@ -122,6 +124,8 @@
 							element.addEventListener('click', smoothJump )
 						}
 					})
+					const element = document.getElementById('markdown');
+					element.innerHTML = joypixels.shortnameToUnicode(element.innerHTML)
 				})
 			if ( pathname === '/') markdownPromise.then( () => fetch('https://static.katio.net/dynamic/markdownlist') )
 					.then( (response) => response.json() )
