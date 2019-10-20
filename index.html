@@ -84,14 +84,12 @@
 			return false;
 		}
 
-		/*
 		const hashChangeEvent = () => {
 			if (location.pathname === "/" && location.hash.startsWith('#/page/')) {
 				filename = location.hash.slice(7)
 				location.href = "/page/" + filename
 			}
 		}
-		*/
 
 
 		const UpdateDomFromUrl = () => {
@@ -165,9 +163,10 @@
 
 		goback = document.getElementById('gobacklink').addEventListener('click', smoothJump )
 
-		//window.onhashchange = hashChangeEvent
+		window.onhashchange = hashChangeEvent
 		window.onpopstate = UpdateDomFromUrl
 
+		hashChangeEvent()
 		UpdateDomFromUrl()
 
 	</script>
