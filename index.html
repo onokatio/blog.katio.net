@@ -99,9 +99,9 @@
 				filename = '/markdown/' + location.pathname.slice(6) + '.md'
 				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = '/markdown/404.md'
 			} else if ( pathname === '/') {
-				filename = '/markdown/index.md'
+				filename = 'markdown/index.md'
 			} else {
-				filename = '/markdown/404.md'
+				filename = 'markdown/404.md'
 			}
 
 			document.getElementById("editgithub").setAttribute("href",
