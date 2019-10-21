@@ -129,19 +129,19 @@
 					.then( (response) => response.json() )
 					.then( (json) => {
 						json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
-						json.forEach( (contentAndFilename) => {
+						json.forEach( ({filename,title,summary}) => {
 
 							const articleTitle = document.createElement("h5")
 							articleTitle.className = "card-title"
-							articleTitle.textContent = contentAndFilename.title
+							articleTitle.textContent = title
 
 							const articleSummary = document.createElement("p")
 							articleSummary.className = "card-text"
-							articleSummary.textContent = contentAndFilename.summary + '...'
+							articleSummary.textContent = summary + '...'
 
 							const articleLink = document.createElement("a")
 							articleLink.className = "card-link"
-							articleLink.href = "/page/" + contentAndFilename.filename.replace(/\.md$/,'')
+							articleLink.href = "/page/" + filename.replace(/\.md$/,'')
 							articleLink.textContent = "Read more"
 
 							const articleBody = document.createElement("div")
