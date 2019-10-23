@@ -112,25 +112,23 @@
 			document.getElementById("markdown").textContent = 'loading ...'
 
 			// TODO: handle 404 when fetch failed
-			const markdownPromise = fetch('https://static.katio.net/' + filename)
-				.then( (markdown) => markdown.text() )
-				.then ( (text) => {
-					html = marked(text, { renderer: renderer })
-					document.getElementById("markdown").textContent = ''
-					document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
-				}) .then( () => {
-					document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
-					Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
-						if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-							element.addEventListener('click', smoothJump )
-						}
-					})
-					const element = document.getElementById('markdown');
-					element.innerHTML = joypixels.shortnameToUnicode(element.innerHTML)
-				})
-			if ( pathname === '/') markdownPromise.then( () => fetch('https://static.katio.net/dynamic/markdownlist') )
+			if ( pathname === '/'){
+				fetch('https://static.katio.net/dynamic/markdownlist')
 					.then( (response) => response.json() )
 					.then( (json) => {
+
+						document.getElementById("markdown").textContent = ''
+
+						const header = document.createElement('h1')
+						header.textContent = 'おのかちおのブログ'
+
+						const articleList = document.createElement('div')
+						articleList.className = 'd-flex flex-wrap'
+						articleList.id = 'articleList'
+						document.getElementById("markdown").appendChild(header)
+						document.getElementById("markdown").appendChild(articleList)
+
+
 						json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
 						json.forEach( ({filename,title,summary}) => {
 
@@ -140,6 +138,24 @@
 
 						})
 					})
+			} else {
+				const markdownPromise = fetch('https://static.katio.net/' + filename)
+					.then( (markdown) => markdown.text() )
+					.then ( (text) => {
+						html = marked(text, { renderer: renderer })
+						document.getElementById("markdown").textContent = ''
+						document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
+					}) .then( () => {
+						document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
+						Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
+							if( element.pathname.startsWith('/page/') || element.pathname === '/'){
+								element.addEventListener('click', smoothJump )
+							}
+						})
+						const element = document.getElementById('markdown');
+						element.innerHTML = joypixels.shortnameToUnicode(element.innerHTML)
+					})
+			}
 
 		}
 		const createCard = (filename,title,summary) => {
