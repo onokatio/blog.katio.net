@@ -1,0 +1,8 @@
+.markdown-body pre code {
+	display: block;
+	padding: 16px;
+}
+
+.hljs {
+	background: #002b36 !important;
+}
