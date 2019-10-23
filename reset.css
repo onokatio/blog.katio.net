@@ -1,6 +1,11 @@
+.markdown-body pre {
+	background-color: unset;
+}
+
 .markdown-body pre code {
 	display: block;
 	padding: 16px;
+	overflow-x: scroll;
 }
 
 .hljs {
