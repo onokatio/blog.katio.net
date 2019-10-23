@@ -134,34 +134,39 @@
 						json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
 						json.forEach( ({filename,title,summary}) => {
 
-							const articleTitle = document.createElement("h5")
-							articleTitle.className = "card-title"
-							articleTitle.textContent = title
-
-							const articleSummary = document.createElement("p")
-							articleSummary.className = "card-text"
-							articleSummary.textContent = summary + '...'
-
-							const articleLink = document.createElement("a")
-							articleLink.className = "card-link"
-							articleLink.href = "/page/" + filename.replace(/\.md$/,'')
-							articleLink.textContent = "Read more"
-
-							const articleBody = document.createElement("div")
-							articleBody.className = "card-body"
-							articleBody.appendChild(articleTitle)
-							articleBody.appendChild(articleSummary)
-							articleBody.appendChild(articleLink)
-
-							const card = document.createElement("div")
-							card.className = "card"
-							card.appendChild(articleBody)
+							const card = createCard(filename,title,summary)
 
 							document.getElementById("articleList").appendChild(card)
 
 						})
 					})
 
+		}
+		const createCard = (filename,title,summary) => {
+			const articleTitle = document.createElement("h5")
+			articleTitle.className = "card-title"
+			articleTitle.textContent = title
+
+			const articleSummary = document.createElement("p")
+			articleSummary.className = "card-text"
+			articleSummary.textContent = summary + '...'
+
+			const articleLink = document.createElement("a")
+			articleLink.className = "card-link"
+			articleLink.href = "/page/" + filename.replace(/\.md$/,'')
+			articleLink.textContent = "Read more"
+
+			const articleBody = document.createElement("div")
+			articleBody.className = "card-body"
+			articleBody.appendChild(articleTitle)
+			articleBody.appendChild(articleSummary)
+			articleBody.appendChild(articleLink)
+
+			const card = document.createElement("div")
+			card.className = "card"
+			card.appendChild(articleBody)
+
+			return card
 		}
 
 		goback = document.getElementById('gobacklink').addEventListener('click', smoothJump )
