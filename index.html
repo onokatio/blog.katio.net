@@ -23,7 +23,7 @@
     <link rel="dns-prefetch" href="https://cdn.honokak.osaka/">
 
     <link rel="stylesheet" href='https://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="/github-markdown.css">
+    <!--link rel="stylesheet" href="/github-markdown.css"-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/solarized-dark.min.css" integrity="sha384-p6WZvQLdHPn3qN+qHxW8HTPV11ZECxUCxol/Rg+glNgBrkyTUwNiPIrXE2EESD3z" crossorigin="anonymous">
     <link rel="stylesheet" href='/main.css'>
 
@@ -70,29 +70,6 @@
 				'<img width="100%" src="' + e + '" alt="' + n + '"';
 			return t && (r += ' title="' + t + '"'), r += ">"
 		}
-		renderer.code = function(code, infostring, escaped) {
-			var lang = (infostring || '').match(/\S*/)[0];
-			if (this.options.highlight) {
-				var out = this.options.highlight(code, lang);
-				if (out != null && out !== code) {
-					escaped = true;
-					code = out;
-				}
-			}
-
-			if (!lang) {
-				return '<pre><code>'
-				+ (escaped ? code : escape(code, true))
-				+ '</code></pre>';
-			}
-
-			return '<pre><code class="'
-				+ this.options.langPrefix
-				+ escape(lang, true)
-				+ '">'
-				+ (escaped ? code : escape(code, true))
-				+ '</code></pre>\n';
-		};
 
 		marked.setOptions({
 			renderer: renderer,
