@@ -80,6 +80,7 @@
 		})
 
 		const smoothJump = (event) => {
+			console.log('smooth')
 			event.preventDefault()
 			event.stopPropagation()
 			history.pushState(null, null, event.target.pathname)
@@ -107,16 +108,18 @@
 				filename = 'markdown/404.md'
 			}
 
-			document.getElementById("editgithub").setAttribute("href",
-				"https://github.com/onokatio-blog/blog/blob/master/" + filename)
+			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...'
 
+			let markdownPromise
 			// TODO: handle 404 when fetch failed
 			if ( pathname === '/'){
-				fetch('https://static.katio.net/dynamic/markdownlist')
+				markdownPromise = fetch('https://static.katio.net/dynamic/markdownlist')
 					.then( (response) => response.json() )
 					.then( (json) => {
 
+						document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog")
+						document.getElementById("editgithub").textContent = 'Pull Request this site on github'
 						document.getElementById("markdown").textContent = ''
 
 						const header = document.createElement('h1')
@@ -137,9 +140,10 @@
 							document.getElementById("articleList").appendChild(card)
 
 						})
+						return Promise.resolve()
 					})
 			} else {
-				const markdownPromise = fetch('https://static.katio.net/' + filename)
+				markdownPromise = fetch('https://static.katio.net/' + filename)
 					.then( (markdown) => markdown.text() )
 					.then ( (text) => {
 						html = marked(text, { renderer: renderer })
@@ -147,15 +151,20 @@
 						document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 					}) .then( () => {
 						document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
-						Array.prototype.forEach.call(document.getElementById('markdown').getElementsByTagName('a'), (element) => {
-							if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-								element.addEventListener('click', smoothJump )
-							}
-						})
-						const element = document.getElementById('markdown');
-						element.innerHTML = joypixels.shortnameToUnicode(element.innerHTML)
+						return Promise.resolve()
 					})
 			}
+
+			markdownPromise.then( () => {
+				const container = document.getElementById('markdown')
+				container.innerHTML = joypixels.shortnameToUnicode(container.innerHTML)
+
+				Array.prototype.forEach.call(container.getElementsByTagName('a'), (element) => {
+					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
+						element.addEventListener('click', smoothJump )
+					}
+				})
+			})
 
 		}
 		const createCard = (filename,title,summary) => {
