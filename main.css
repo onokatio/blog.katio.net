@@ -1,3 +1,4 @@
+/*
 hr {
 	border-top: 1px solid rgba(0,0,0,.5)
 }
@@ -5,6 +6,7 @@ hr {
 a {
 	word-break: break-all;
 }
+*/
 
 @media (min-width: 576px) {
 .container {
@@ -48,13 +50,14 @@ a {
 }
 }
 
+/*
 .jumbotron {
 	padding-top: 2rem !important;
 	padding-bottom: 2rem !important;
 	background-color: white !important;
 	border-left: 1px solid rgba(0,0,0,.125) !important;
 	border-radius: 0 !important;
-}
+}*/
 
 .card {
 	border: none !important;
@@ -65,7 +68,7 @@ a {
 .container {
 	margin-bottom: 2rem;
 }
-
+/*
 #markdown h1:not(#jumbotron > h1), #markdown h2:not(#jumbotron > h2), #markdown h3:not(#jumbotron > h3) {
 	font-weight: 100;
 	margin-bottom: 2rem;
@@ -79,6 +82,7 @@ a {
 #markdown h1:not(:first-child,#jumbotron > h1), #markdown h2:not(#jumbotron > h2), #markdown h3:not(#jumbotron > h3) {
 	margin-top: 3rem;
 }
+*/
 
 .card-text {
 	/* rem is font-size but there is some space from line height
