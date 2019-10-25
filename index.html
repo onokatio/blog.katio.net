@@ -181,6 +181,8 @@
 						document.querySelector("meta[property='og:description']").setAttribute('content', summary)
 						if( metadata.title !== undefined ){
 							document.querySelector("meta[property='og:title']").setAttribute('content', metadata.title + " - おのかちお's blog")
+						} else {
+							document.querySelector("meta[property='og:title']").setAttribute('content', "指定されたパスは存在しません。")
 						}
 					})
 			}
