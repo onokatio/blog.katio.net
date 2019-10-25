@@ -179,7 +179,9 @@
 
 						document.querySelector("meta[name='description']").setAttribute('content', summary)
 						document.querySelector("meta[property='og:description']").setAttribute('content', summary)
-						document.querySelector("meta[property='og:title']").setAttribute('content', metadata.title + " - おのかちお's blog")
+						if( metadata.title !== undefined ){
+							document.querySelector("meta[property='og:title']").setAttribute('content', metadata.title + " - おのかちお's blog")
+						}
 					})
 			}
 
