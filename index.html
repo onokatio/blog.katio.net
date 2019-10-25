@@ -39,17 +39,17 @@
     <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
 
     <meta name='author' content='@onokatio_'>
-    <meta name='application-name' content='おのかちおのブログ'>
+    <meta name='application-name' content="おのかちお's blog">
     <meta name='description' content='取得に失敗しました'>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@onokatio_">
     <meta name="twitter:creator" content="@onokatio_">
-    <meta property="og:title" content="取得に失敗しました - おのかちおのブログ">
+    <meta property="og:title" content="取得に失敗しました - おのかちお's blog">
     <meta property="og:description" content="取得に失敗しました">
     <meta property="og:type" content="artcle">
     <meta property="og:url" content="https://blog.katio.net/">
     <meta property="og:image" content="https://static.katio.net/image/katio.jpg">
-    <meta property="og:site_name" content="おのかちおのブログ">
+    <meta property="og:site_name" content="おのかちお's blog">
 
     <meta name="google-site-verification" content="86HJNXgtgHoaF8PlmtzVUIic7r18GLYtEIQZJLt2mN4" />
 
@@ -153,9 +153,26 @@
 						html = marked(content, { renderer: renderer })
 						document.getElementById("markdown").textContent = ''
 						document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
-					}) .then( () => {
-						document.title = document.getElementById('markdown').childNodes[0].innerText + '- blog.katio.net'
-						return Promise.resolve()
+
+						const hackmd_title_regex = /^\n*(.+)\n=+/
+						const markdown_title_regex = /^\n*# (.+)\n/
+
+						summary = content.replace(hackmd_title_regex,'') // remove (title \n ===)
+							.replace(markdown_title_regex,'')          // remove (# title\n)
+							.replace(/\n#+ /g,'\n')         // remove markdown sharp
+							.replace(/`/g,'')               // remove markdown back quote`
+							.replace(/^ +- /g,'')           // remove markdown hyphen
+							.replace(/\!?\[.*\]\((.+)\)/g,'$1') // remove markdown link
+							.replace(/:[a-zA-Z]+:/g,'')     // remove emoji
+							.replace(/\n/g,' ')             // replace newline to space
+							.replace(/^ +/,'')              // delete prefix space
+							.slice(0,100)
+
+						document.title = metadata.title + " - おのかちお's blog"
+
+						document.querySelector("meta[name='description']").setAttribute('content', summary)
+						document.querySelector("meta[property='og:description']").setAttribute('content', summary)
+						document.querySelector("meta[property='og:title']").setAttribute('content', metadata.title + " - おのかちお's blog")
 					})
 			}
 
@@ -168,6 +185,7 @@
 						element.addEventListener('click', smoothJump )
 					}
 				})
+
 			})
 
 		}
