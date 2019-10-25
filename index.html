@@ -33,6 +33,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha384-Lq4dkOUVSNElT8uHCChL3Wlg1H2PWo8qxHqROqOMeVSHAtBe0lWY8KT+yJwHNQ2Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/lib/js/joypixels.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/extras/css/joypixels.min.css">
+    <script src="https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js"></script>
+    <script src="https://dworthen.github.io/js-yaml-front-matter/js/yamlFront.js"></script>
 
     <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
 
@@ -146,6 +148,8 @@
 				markdownPromise = fetch('https://static.katio.net/' + filename)
 					.then( (markdown) => markdown.text() )
 					.then ( (text) => {
+						metadata = yamlFront.safeLoadFront(text)
+						text = metadata.__content
 						html = marked(text, { renderer: renderer })
 						document.getElementById("markdown").textContent = ''
 						document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
