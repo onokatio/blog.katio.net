@@ -82,7 +82,6 @@
 		})
 
 		const smoothJump = (event) => {
-			console.log('smooth')
 			event.preventDefault()
 			event.stopPropagation()
 			history.pushState(null, null, event.target.pathname)
@@ -102,8 +101,8 @@
 			// get url path and rewrite dom directly. If it doesn't match any rule, return 404 pages.
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
-				filename = '/markdown/' + location.pathname.slice(6) + '.md'
-				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = '/markdown/404.md'
+				filename = 'markdown/' + location.pathname.slice(6) + '.md'
+				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = 'markdown/404.md'
 			} else if ( pathname === '/') {
 				filename = 'markdown/index.md'
 			} else {
@@ -138,8 +137,16 @@
 						json.forEach( ({filename,title,summary}) => {
 
 							const card = createCard(filename,title,summary)
-
 							document.getElementById("articleList").appendChild(card)
+
+							/*
+							const preloadLink = document.createElement("link")
+							preloadLink.href = 'https://static.katio.net/markdown/' + filename
+							preloadLink.rel = "preload"
+							preloadLink.as = "fetch"
+							preloadLink.setAttribute('crossorigin','anonymous')
+							document.head.appendChild(preloadLink)
+							*/
 
 						})
 
