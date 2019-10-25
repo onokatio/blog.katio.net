@@ -142,6 +142,12 @@
 							document.getElementById("articleList").appendChild(card)
 
 						})
+
+						document.querySelector("meta[name='description']").setAttribute('content', '記事一覧')
+						document.querySelector("meta[property='og:description']").setAttribute('content', '記事一覧')
+						document.title = "記事一覧 - おのかちお's blog"
+						document.querySelector("meta[property='og:title']").setAttribute('content', "記事一覧 - おのかちお's blog")
+
 						return Promise.resolve()
 					})
 			} else {
