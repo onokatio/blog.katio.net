@@ -146,11 +146,11 @@
 					})
 			} else {
 				markdownPromise = fetch('https://static.katio.net/' + filename)
-					.then( (markdown) => markdown.text() )
+					.then( (response) => response.text() )
 					.then ( (text) => {
 						metadata = yamlFront.safeLoadFront(text)
-						text = metadata.__content
-						html = marked(text, { renderer: renderer })
+						content = metadata.__content
+						html = marked(content, { renderer: renderer })
 						document.getElementById("markdown").textContent = ''
 						document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 					}) .then( () => {
