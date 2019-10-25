@@ -146,7 +146,14 @@
 					})
 			} else {
 				markdownPromise = fetch('https://static.katio.net/' + filename)
-					.then( (response) => response.text() )
+					.then( (response) => {
+						if( response.ok !== true ) {
+							return fetch('https://static.katio.net/markdown/404.md')
+								.then( (response) => response.text() )
+						} else {
+							return response.text()
+						}
+					})
 					.then ( (text) => {
 						metadata = yamlFront.safeLoadFront(text)
 						content = metadata.__content
