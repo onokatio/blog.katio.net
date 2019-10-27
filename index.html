@@ -192,7 +192,7 @@
 						document.querySelector("meta[name='description']").setAttribute('content', summary)
 						document.querySelector("meta[property='og:description']").setAttribute('content', summary)
 
-						if( metadata.title != undefined ){
+						if( metadata.title !== undefined ){
 							title = metadata.title
 						}else if( ( result = content.match(hackmd_title_regex) ) !== null){
 							title = result[0].replace(hackmd_title_regex,'$1')
