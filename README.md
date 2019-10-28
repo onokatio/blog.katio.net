@@ -5,3 +5,9 @@
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fonokatio-blog%2Fonokatio-blog.github.io.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fonokatio-blog%2Fonokatio-blog.github.io?ref=badge_large)
+
+## Version
+
+- `tag/0.1`: bootstrapとhtmlでプロフィールを作っていた、最初のページ
+- `tag/1.0`: マークダウンでブログを管理する仕組みを実装した、初期段階のブログ。URLの仕組みはハッシュを使用した。
+- `tag/2.0`: ハイライト、OGP、ハッシュを使わないURLパス、Netlifyでのデプロイ、yaml metadata、記事一覧の自動生成を実現したバージョン。
