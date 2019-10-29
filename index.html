@@ -184,11 +184,13 @@
 						document.querySelector("meta[property='og:title']").setAttribute('content', title + " - おのかちお's blog")
 					})
 		}
+		const isValidFileName = filename => ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/)
+
 		const UpdatePageFromUrl = () => {
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
 				filename = 'markdown/' + location.pathname.slice(6) + '.md'
-				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = 'markdown/404.md'
+				if ( isValidFileName(filename) ) filename = 'markdown/404.md';
 			} else if ( pathname === '/') {
 				filename = 'markdown/index.md'
 			} else {
@@ -198,12 +200,7 @@
 			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...'
 
-			let markdownPromise
-			if ( pathname === '/'){
-				markdownPromise = RenderIndex()
-			} else {
-				markdownPromise = RenderMarkdown(filename)
-			}
+			let markdownPromise = pathname === '/' ? RenderIndex()  : RenderMarkdown(filename)
 
 			markdownPromise.then( () => {
 				const container = document.getElementById('markdown')
