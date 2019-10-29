@@ -68,13 +68,6 @@
 	<script>
 		const renderer = new marked.Renderer()
 
-		// override image tag rendering function
-		renderer.image = function(e, t, n) {
-			var r =
-				'<img width="100%" src="' + e + '" alt="' + n + '"';
-			return t && (r += ' title="' + t + '"'), r += ">"
-		}
-
 		marked.setOptions({
 			renderer: renderer,
 			langPrefix: 'hljs ',
