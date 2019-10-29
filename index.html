@@ -92,7 +92,6 @@
 
 
 		const UpdateDomFromUrl = () => {
-			// get url path and rewrite dom directly. If it doesn't match any rule, return 404 pages.
 			pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
 				filename = 'markdown/' + location.pathname.slice(6) + '.md'
@@ -107,7 +106,6 @@
 			document.getElementById("markdown").textContent = 'loading ...'
 
 			let markdownPromise
-			// TODO: handle 404 when fetch failed
 			if ( pathname === '/'){
 				markdownPromise = fetch('https://static.katio.net/dynamic/markdownlist')
 					.then( (response) => response.json() )
