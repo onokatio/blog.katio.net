@@ -78,7 +78,7 @@
 			event.preventDefault()
 			event.stopPropagation()
 			history.pushState(null, null, event.target.pathname)
-			UpdateDomFromUrl()
+			UpdatePageFromUrl()
 			return false;
 		}
 
@@ -91,66 +91,52 @@
 		hashChangeEvent()
 
 
-		const UpdateDomFromUrl = () => {
-			pathname = location.pathname
-			if ( pathname.startsWith('/page/') ) {
-				filename = 'markdown/' + location.pathname.slice(6) + '.md'
-				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = 'markdown/404.md'
-			} else if ( pathname === '/') {
-				filename = 'markdown/index.md'
-			} else {
-				filename = 'markdown/404.md'
-			}
+		const RenderIndex = () => {
+			return fetch('https://static.katio.net/dynamic/markdownlist')
+				.then( (response) => response.json() )
+				.then( (json) => {
 
-			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
-			document.getElementById("markdown").textContent = 'loading ...'
+					document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog")
+					document.getElementById("editgithub").textContent = 'Pull Request this site on github'
+					document.getElementById("markdown").textContent = ''
 
-			let markdownPromise
-			if ( pathname === '/'){
-				markdownPromise = fetch('https://static.katio.net/dynamic/markdownlist')
-					.then( (response) => response.json() )
-					.then( (json) => {
+					const header = document.createElement('h1')
+					header.textContent = "おのかちお's blog"
 
-						document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog")
-						document.getElementById("editgithub").textContent = 'Pull Request this site on github'
-						document.getElementById("markdown").textContent = ''
-
-						const header = document.createElement('h1')
-						header.textContent = "おのかちお's blog"
-
-						const articleList = document.createElement('div')
-						articleList.className = 'd-flex flex-wrap'
-						articleList.id = 'articleList'
-						document.getElementById("markdown").appendChild(header)
-						document.getElementById("markdown").appendChild(articleList)
+					const articleList = document.createElement('div')
+					articleList.className = 'd-flex flex-wrap'
+					articleList.id = 'articleList'
+					document.getElementById("markdown").appendChild(header)
+					document.getElementById("markdown").appendChild(articleList)
 
 
-						json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
-						json.forEach( ({filename,title,summary}) => {
+					json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
+					json.forEach( ({filename,title,summary}) => {
 
-							const card = createCard(filename,title,summary)
-							document.getElementById("articleList").appendChild(card)
+						const card = createCard(filename,title,summary)
+						document.getElementById("articleList").appendChild(card)
 
-							/*
-							const preloadLink = document.createElement("link")
-							preloadLink.href = 'https://static.katio.net/markdown/' + filename
-							preloadLink.rel = "preload"
-							preloadLink.as = "fetch"
-							preloadLink.setAttribute('crossorigin','anonymous')
-							document.head.appendChild(preloadLink)
-							*/
+						/*
+						const preloadLink = document.createElement("link")
+						preloadLink.href = 'https://static.katio.net/markdown/' + filename
+						preloadLink.rel = "preload"
+						preloadLink.as = "fetch"
+						preloadLink.setAttribute('crossorigin','anonymous')
+						document.head.appendChild(preloadLink)
+						*/
 
-						})
-
-						document.querySelector("meta[name='description']").setAttribute('content', '記事一覧')
-						document.querySelector("meta[property='og:description']").setAttribute('content', '記事一覧')
-						document.title = "記事一覧 - おのかちお's blog"
-						document.querySelector("meta[property='og:title']").setAttribute('content', "記事一覧 - おのかちお's blog")
-
-						return Promise.resolve()
 					})
-			} else {
-				markdownPromise = fetch('https://static.katio.net/' + filename)
+
+					document.querySelector("meta[name='description']").setAttribute('content', '記事一覧')
+					document.querySelector("meta[property='og:description']").setAttribute('content', '記事一覧')
+					document.title = "記事一覧 - おのかちお's blog"
+					document.querySelector("meta[property='og:title']").setAttribute('content', "記事一覧 - おのかちお's blog")
+
+					return Promise.resolve()
+				})
+		}
+		const RenderMarkdown = (filename) => {
+				return fetch('https://static.katio.net/' + filename)
 					.then( (response) => {
 						if( response.ok !== true ) {
 							return fetch('https://static.katio.net/markdown/404.md')
@@ -197,6 +183,26 @@
 						document.title = title + " - おのかちお's blog"
 						document.querySelector("meta[property='og:title']").setAttribute('content', title + " - おのかちお's blog")
 					})
+		}
+		const UpdatePageFromUrl = () => {
+			pathname = location.pathname
+			if ( pathname.startsWith('/page/') ) {
+				filename = 'markdown/' + location.pathname.slice(6) + '.md'
+				if ( ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ) filename = 'markdown/404.md'
+			} else if ( pathname === '/') {
+				filename = 'markdown/index.md'
+			} else {
+				filename = 'markdown/404.md'
+			}
+
+			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
+			document.getElementById("markdown").textContent = 'loading ...'
+
+			let markdownPromise
+			if ( pathname === '/'){
+				markdownPromise = RenderIndex()
+			} else {
+				markdownPromise = RenderMarkdown(filename)
 			}
 
 			markdownPromise.then( () => {
@@ -242,9 +248,9 @@
 		goback = document.getElementById('gobacklink').addEventListener('click', smoothJump )
 
 		window.onhashchange = hashChangeEvent
-		window.onpopstate = UpdateDomFromUrl
+		window.onpopstate = UpdatePageFromUrl
 
-		UpdateDomFromUrl()
+		UpdatePageFromUrl()
 
 	</script>
 
