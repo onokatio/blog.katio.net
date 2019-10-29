@@ -110,22 +110,10 @@
 					document.getElementById("markdown").appendChild(articleList)
 
 
-					json = json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
-					json.forEach( ({filename,title,summary}) => {
-
-						const card = createCard(filename,title,summary)
-						document.getElementById("articleList").appendChild(card)
-
-						/*
-						const preloadLink = document.createElement("link")
-						preloadLink.href = 'https://static.katio.net/markdown/' + filename
-						preloadLink.rel = "preload"
-						preloadLink.as = "fetch"
-						preloadLink.setAttribute('crossorigin','anonymous')
-						document.head.appendChild(preloadLink)
-						*/
-
-					})
+					json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
+						.forEach( ({filename,title,summary}) => {
+							document.getElementById("articleList").appendChild(createCard(filename,title,summary))
+						})
 
 					document.querySelector("meta[name='description']").setAttribute('content', '記事一覧')
 					document.querySelector("meta[property='og:description']").setAttribute('content', '記事一覧')
@@ -240,7 +228,7 @@
 			return card
 		}
 
-		goback = document.getElementById('gobacklink').addEventListener('click', smoothJump )
+		document.getElementById('gobacklink').addEventListener('click', smoothJump )
 
 		window.onhashchange = hashChangeEvent
 		window.onpopstate = UpdatePageFromUrl
