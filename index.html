@@ -106,11 +106,12 @@
 					const articleList = document.createElement('div')
 					articleList.className = 'd-flex flex-wrap'
 					articleList.id = 'articleList'
+
 					document.getElementById("markdown").appendChild(header)
 					document.getElementById("markdown").appendChild(articleList)
 
 
-					json.filter( (contentAndFilename) => contentAndFilename.filename !== '404.md' )
+					json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
 						.forEach( ({filename,title,summary}) => {
 							document.getElementById("articleList").appendChild(createCard(filename,title,summary))
 						})
@@ -120,10 +121,10 @@
 					document.title = "記事一覧 - おのかちお's blog"
 					document.querySelector("meta[property='og:title']").setAttribute('content', "記事一覧 - おのかちお's blog")
 
-					return Promise.resolve()
 				})
 		}
-		const RenderMarkdown = (filename) => {
+
+		const RenderMarkdown = filename => {
 				return fetch('https://static.katio.net/' + filename)
 					.then( (response) => {
 						if( response.ok !== true ) {
@@ -175,15 +176,11 @@
 		const isValidFileName = filename => ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/)
 
 		const UpdatePageFromUrl = () => {
-			pathname = location.pathname
+			const pathname = location.pathname
 			if ( pathname.startsWith('/page/') ) {
 				filename = 'markdown/' + location.pathname.slice(6) + '.md'
 				if ( isValidFileName(filename) ) filename = 'markdown/404.md';
-			} else if ( pathname === '/') {
-				filename = 'markdown/index.md'
-			} else {
-				filename = 'markdown/404.md'
-			}
+			} else filename = 'markdown/404.md'
 
 			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...';
@@ -192,10 +189,10 @@
 				const text = document.getElementById('markdown')
 				text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 
-				Array.prototype.forEach.call(text.getElementsByTagName('a'), (element) => {
-					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
-						element.addEventListener('click', smoothJump )
-					}
+				// Array.prototype.forEach.call(text.getElementsByTagName('a'), (element) => {
+
+				Array.from(text.getElementsByTagName('a')).forEach( element => {
+					if( element.pathname.startsWith('/page/') || element.pathname === '/') element.addEventListener('click', smoothJump )
 				})
 
 			})
@@ -236,11 +233,5 @@
 		UpdatePageFromUrl()
 
 	</script>
-
-	<!-- Bootstrap -->
-	<!--
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous" defer></script>
-	-->
   </body>
 </html>
