@@ -200,11 +200,10 @@
 			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...'
 
-			let markdownPromise = pathname === '/' ? RenderIndex()  : RenderMarkdown(filename)
+			const markdownPromise = pathname === '/' ? RenderIndex()  : RenderMarkdown(filename)
 
 			markdownPromise.then( () => {
-				const container = document.getElementById('markdown')
-				container.innerHTML = joypixels.shortnameToUnicode(container.innerHTML)
+				document.getElementById('markdown').innerHTML = joypixels.shortnameToUnicode(container.innerHTML)
 
 				Array.prototype.forEach.call(container.getElementsByTagName('a'), (element) => {
 					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
