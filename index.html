@@ -198,14 +198,13 @@
 			}
 
 			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
-			document.getElementById("markdown").textContent = 'loading ...'
+			document.getElementById("markdown").textContent = 'loading ...';
 
-			const markdownPromise = pathname === '/' ? RenderIndex()  : RenderMarkdown(filename)
+			( pathname === '/' ? RenderIndex()  : RenderMarkdown(filename) ).then( () => {
+				const text = document.getElementById('markdown')
+				text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 
-			markdownPromise.then( () => {
-				document.getElementById('markdown').innerHTML = joypixels.shortnameToUnicode(container.innerHTML)
-
-				Array.prototype.forEach.call(container.getElementsByTagName('a'), (element) => {
+				Array.prototype.forEach.call(text.getElementsByTagName('a'), (element) => {
 					if( element.pathname.startsWith('/page/') || element.pathname === '/'){
 						element.addEventListener('click', smoothJump )
 					}
