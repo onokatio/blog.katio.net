@@ -66,6 +66,7 @@
 	</div>
 
 	<script>
+		"use strict";
 		const renderer = new marked.Renderer()
 
 		marked.setOptions({
@@ -177,10 +178,13 @@
 
 		const UpdatePageFromUrl = () => {
 			const pathname = location.pathname
+			let filename;
 			if ( pathname.startsWith('/page/') ) {
 				filename = 'markdown/' + location.pathname.slice(6) + '.md'
 				if ( isValidFileName(filename) ) filename = 'markdown/404.md';
-			} else filename = 'markdown/404.md'
+			} else {
+				filename = 'markdown/404.md'
+			}
 
 			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			document.getElementById("markdown").textContent = 'loading ...';
