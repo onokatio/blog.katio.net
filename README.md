@@ -17,6 +17,8 @@
 [![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fblog.katio.net)](https://securityheaders.com/?q=https%3A%2F%2Fblog.katio.net%2F&followRedirects=on)  
 ![Website](https://img.shields.io/website?down_message=failing&label=website%20status&up_message=running&url=https%3A%2F%2Fblog.katio.net)
 
+[Google Page Insight](https://developers.google.com/speed/pagespeed/insights/?hl=JA&url=https%3A%2F%2Fblog.katio.net%2F&tab=desktop)
+
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fonokatio-blog%2Fonokatio-blog.github.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fonokatio-blog%2Fonokatio-blog.github.io?ref=badge_shield)
