@@ -136,16 +136,16 @@
 						}
 					})
 					.then ( (text) => {
-						metadata = yamlFront.safeLoadFront(text)
-						content = metadata.__content
-						html = marked(content, { renderer: renderer })
+						const metadata = yamlFront.safeLoadFront(text)
+						const content = metadata.__content
+						const html = marked(content, { renderer: renderer })
 						document.getElementById("markdown").textContent = ''
 						document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 
 						const hackmd_title_regex = /^\n*(.+)\n=+/
 						const markdown_title_regex = /^\n*# (.+)\n/
 
-						summary = content.replace(hackmd_title_regex,'') // remove (title \n ===)
+						const summary = content.replace(hackmd_title_regex,'') // remove (title \n ===)
 							.replace(markdown_title_regex,'')          // remove (# title\n)
 							.replace(/\n#+ /g,'\n')         // remove markdown sharp
 							.replace(/`/g,'')               // remove markdown back quote`
@@ -160,6 +160,7 @@
 						document.querySelector("meta[name='description']").setAttribute('content', summary)
 						document.querySelector("meta[property='og:description']").setAttribute('content', summary)
 
+						let title;
 						if( metadata.title !== undefined ){
 							title = metadata.title
 						}else if( ( result = content.match(hackmd_title_regex) ) !== null){
