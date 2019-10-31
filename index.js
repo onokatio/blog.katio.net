@@ -168,3 +168,6 @@ window.onhashchange = hashChangeEvent
 window.onpopstate = UpdatePageFromUrl
 
 UpdatePageFromUrl()
+
+navigator.serviceWorker.register('/serviceworker.js')
+	.then( () => console.log('sw registered.') )
