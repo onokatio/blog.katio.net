@@ -5,6 +5,7 @@ const cacheList = [
 	origin + '/main.css',
 	origin + '/index.js',
 	origin + '/favicon.ico'
+	origin + '/serviceworker.js',
 	// 'https://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css',
 	// 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css',
 	// 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/solarized-dark.min.css',
