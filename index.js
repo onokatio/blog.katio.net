@@ -17,8 +17,7 @@ const smoothJump = (event) => {
 
 const hashChangeEvent = () => {
 	if (location.pathname === "/" && location.hash.startsWith('#/page/')) {
-		filename = location.hash.slice(7)
-		location.href = "/page/" + filename
+		location.href = "/page/" + location.hash.slice(7)
 	}
 }
 hashChangeEvent()
