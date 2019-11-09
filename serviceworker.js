@@ -1,3 +1,5 @@
+const cacheVersion = 'v2';
+
 const origin = 'https://blog.katio.net'
 
 const cacheList = [
@@ -19,7 +21,7 @@ const cacheList = [
 
 self.addEventListener('install', event => {
 	event.waitUntil(
-		caches.open('v1')
+		caches.open(cacheVersion)
 			.then( cache => cache.addAll(cacheList) )
 	)
 })
@@ -31,7 +33,7 @@ self.addEventListener('fetch', event => {
 			.then( response => {
 				return response || fetch(event.request).then( response2 => {
 					console.log('sw: fetching non cached resources')
-					return caches.open('v1')
+					return caches.open(cacheVersion)
 						.then( cache => {
 							cache.put(event.request, response2.clone())
 							return response2;
