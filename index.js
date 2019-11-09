@@ -61,14 +61,13 @@ const RenderMarkdown = filename => {
 			.then( (response) => {
 				if( response.ok !== true ) {
 					return fetch('https://static.katio.net/markdown/404.md')
-						//.then( (response) => response.text() )
 						.then( (response) => response.body.getReader() )
 				} else {
-					//return response.text()
 					return response.body.getReader()
 				}
 			})
 			.then( reader => {
+
 				let text = '';
 
 				const decoder = new TextDecoder();
