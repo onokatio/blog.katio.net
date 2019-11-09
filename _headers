@@ -3,4 +3,4 @@
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer-when-downgrade
-  Content-Security-Policy: default-src 'self' 'unsafe-inline' *.katio.net cdnjs.cloudflare.com cdn.jsdelivr.net unpkg.com dworthen.github.io cdn.honokak.osaka
+  Content-Security-Policy: default-src 'none'; connect-src https://static.katio.net/markdown/minotebook-undervolt.md; font-src data:; img-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/lib/js/joypixels.min.js https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js https://dworthen.github.io/js-yaml-front-matter/js/yamlFront.js https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js; style-src 'self' https://cdn.honokak.osaka/honoka/4.3.1/css/ https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/extras/css/ https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/ https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/; worker-src 'self'
