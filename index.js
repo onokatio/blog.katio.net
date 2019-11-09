@@ -118,6 +118,7 @@ const UpdatePageFromUrl = () => {
 		filename = 'markdown/404.md'
 	}
 
+	document.getElementById("editgithub").textContent = 'Pull Request this page on github'
 	document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 	document.getElementById("markdown").textContent = 'loading ...';
 
