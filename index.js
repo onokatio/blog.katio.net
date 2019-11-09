@@ -61,10 +61,29 @@ const RenderMarkdown = filename => {
 			.then( (response) => {
 				if( response.ok !== true ) {
 					return fetch('https://static.katio.net/markdown/404.md')
-						.then( (response) => response.text() )
+						//.then( (response) => response.text() )
+						.then( (response) => response.body.getReader() )
 				} else {
-					return response.text()
+					//return response.text()
+					return response.body.getReader()
 				}
+			})
+			.then( reader => {
+				let text = '';
+
+				const decoder = new TextDecoder();
+				const readText = () => {
+					return reader.read().then( ({done, value}) => {
+						if(done) return text;
+						text = decoder.decode(value);
+						console.log('load bytes:' + text.length)
+						return readText();
+					})
+				}
+
+				return readText();
+
+				//return text;
 			})
 			.then ( (text) => {
 				const metadata = yamlFront.safeLoadFront(text)
@@ -92,6 +111,7 @@ const RenderMarkdown = filename => {
 				document.querySelector("meta[property='og:description']").setAttribute('content', summary)
 
 				let title;
+				let result;
 				if( metadata.title !== undefined ){
 					title = metadata.title
 				}else if( ( result = content.match(hackmd_title_regex) ) !== null){
