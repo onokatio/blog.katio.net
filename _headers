@@ -3,4 +3,4 @@
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer-when-downgrade
-  Content-Security-Policy: default-src 'self' *.katio.net cdnjs.cloudflare.com cdn.jsdelivr.net unpkg.com dworthen.github.io cdn.honokak.osaka
+  Content-Security-Policy: default-src 'self' 'unsafe-inline' *.katio.net cdnjs.cloudflare.com cdn.jsdelivr.net unpkg.com dworthen.github.io cdn.honokak.osaka
