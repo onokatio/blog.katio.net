@@ -104,6 +104,8 @@ const RenderMarkdown = filename => {
 
 				document.title = title + " - おのかちお's blog"
 				document.querySelector("meta[property='og:title']").setAttribute('content', title + " - おのかちお's blog")
+				document.getElementById("editgithub").textContent = 'Pull Request this page on github'
+				document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			})
 }
 const isValidFileName = filename => ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/)
@@ -118,11 +120,9 @@ const UpdatePageFromUrl = () => {
 		filename = 'markdown/404.md'
 	}
 
-	document.getElementById("editgithub").textContent = 'Pull Request this page on github'
-	document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 	document.getElementById("markdown").textContent = 'loading ...';
 
-	( pathname === '/' ? RenderIndex()  : RenderMarkdown(filename) ).then( () => {
+	( pathname === '/' ? RenderIndex() : RenderMarkdown(filename) ).then( () => {
 		const text = document.getElementById('markdown')
 		text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 
