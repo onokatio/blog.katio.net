@@ -19,6 +19,11 @@
 
 [Google Page Insight](https://developers.google.com/speed/pagespeed/insights/?hl=JA&url=https%3A%2F%2Fblog.katio.net%2F&tab=desktop)
 
+- https://tls.imirhil.fr/https/blog.katio.net
+- https://www.ssllabs.com/ssltest/analyze?d=blog.katio.net
+- https://hstspreload.org/?domain=katio.net
+- https://www.immuniweb.com/ssl/
+
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fonokatio-blog%2Fonokatio-blog.github.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fonokatio-blog%2Fonokatio-blog.github.io?ref=badge_shield)
