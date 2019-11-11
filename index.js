@@ -61,11 +61,14 @@ const RenderMarkdown = filename => {
 			.then( (response) => {
 				if( response.ok !== true ) {
 					return fetch('https://static.katio.net/markdown/404.md')
-						.then( (response) => response.body.getReader() )
+						//.then( (response) => response.body.getReader() )
+						.then( (response) => response.text() )
 				} else {
-					return response.body.getReader()
+					//return response.body.getReader()
+					return response.text()
 				}
 			})
+			/*
 			.then( reader => {
 
 				let text = '';
@@ -84,6 +87,7 @@ const RenderMarkdown = filename => {
 
 				//return text;
 			})
+			*/
 			.then ( (text) => {
 				const metadata = yamlFront.safeLoadFront(text)
 				const content = metadata.__content
