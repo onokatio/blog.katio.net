@@ -4,6 +4,8 @@
 [![Code Quality](https://api.codacy.com/project/badge/Grade/3b32ab7ba84844ddb4b8b44b220428ec?isInternal=true)](https://www.codacy.com/manual/onokatio/onokatio-blog.github.io?utm_source=github.com&utm_medium=referral&utm_content=onokatio-blog/onokatio-blog.github.io&utm_campaign=Badge_Grade_Dashboard)  
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4da41c870129eb14694b/test_coverage)](https://codeclimate.com/github/onokatio-blog/onokatio-blog.github.io/test_coverage)  
 [![Maintainability](https://api.codeclimate.com/v1/badges/4da41c870129eb14694b/maintainability)](https://codeclimate.com/github/onokatio-blog/onokatio-blog.github.io/maintainability)
+[![DeepScan grade](https://deepscan.io/api/teams/6248/projects/8143/branches/92550/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6248&pid=8143&bid=92550)
+[![BCH compliance](https://bettercodehub.com/edge/badge/onokatio-blog/onokatio-blog.github.io?branch=master)](https://bettercodehub.com/)
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/onokatio-blog/onokatio.github.io)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/onokatio-blog/onokatio.github.io)
