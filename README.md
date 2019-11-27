@@ -6,6 +6,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/4da41c870129eb14694b/maintainability)](https://codeclimate.com/github/onokatio-blog/onokatio-blog.github.io/maintainability)
 [![DeepScan grade](https://deepscan.io/api/teams/6248/projects/8143/branches/92550/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6248&pid=8143&bid=92550)
 [![BCH compliance](https://bettercodehub.com/edge/badge/onokatio-blog/onokatio-blog.github.io?branch=master)](https://bettercodehub.com/)
+[![Coverage Status](https://coveralls.io/repos/github/onokatio-blog/onokatio-blog.github.io/badge.svg?branch=master)](https://coveralls.io/github/onokatio-blog/onokatio-blog.github.io?branch=master)
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/onokatio-blog/onokatio.github.io)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/onokatio-blog/onokatio.github.io)
