@@ -156,7 +156,7 @@ const UpdatePageFromUrl = () => {
 		// Array.prototype.forEach.call(text.getElementsByTagName('a'), (element) => {
 
 		Array.from(text.getElementsByTagName('a')).forEach( element => {
-			if( element.pathname.startsWith('/page/') || element.pathname === '/') element.addEventListener('click', smoothJump )
+			if( element.pathname.startsWith('/page/') || ( element.pathname === '/' && element.hash === "" ) ) element.addEventListener('click', smoothJump )
 		})
 
 	})
