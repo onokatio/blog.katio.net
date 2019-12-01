@@ -60,6 +60,42 @@ const RenderIndex = () => {
 		})
 }
 
+const RenderAdventCalendar = () => {
+	return fetch('https://static.katio.net/adventCalendar/2019/onokatio.json')
+		.then( (response) => response.json() )
+		.then( (json) => {
+
+			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio/static.katio.net/")
+			document.getElementById("editgithub").textContent = 'Pull Request this calendar on github'
+			document.getElementById("markdown").textContent = ''
+
+			const header = document.createElement('h1')
+			header.textContent = json.name
+
+			const articleList = document.createElement('div')
+			articleList.className = 'd-flex flex-wrap'
+			articleList.id = 'articleList'
+
+			document.getElementById("markdown").appendChild(header)
+			document.getElementById("markdown").appendChild(articleList)
+
+			for(let i=1; i <= 31; i++){
+				const post = json.posts[i]
+				if( post === undefined ){
+					articleList.appendChild(createCalandarEntry(null,i + "日目",'記事が登録されていません。'))
+				}else{
+					articleList.appendChild(createCalandarEntry(post.url,i + "日目",post.title))
+				}
+			}
+
+			document.querySelector("meta[name='description']").setAttribute('content', json.name)
+			document.querySelector("meta[property='og:description']").setAttribute('content', json.name)
+			document.title = json.name + " - おのかちお's blog"
+			document.querySelector("meta[property='og:title']").setAttribute('content', json.name + " - おのかちお's blog")
+
+		})
+}
+
 const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {
@@ -139,17 +175,25 @@ const isValidFileName = filename => ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/)
 
 const UpdatePageFromUrl = () => {
 	const pathname = location.pathname
-	let filename;
-	if ( pathname.startsWith('/page/') ) {
-		filename = 'post/' + location.pathname.slice(6) + '.md'
-		if ( isValidFileName(filename) ) filename = 'post/404.md';
-	} else {
-		filename = 'post/404.md'
-	}
 
 	document.getElementById("markdown").textContent = 'loading ...';
 
-	( pathname === '/' ? RenderIndex() : RenderMarkdown(filename) ).then( () => {
+	(() => {
+		if( pathname === '/' ){
+			return RenderIndex()
+		}else if( pathname.startsWith('/adventcalendar/2019/onokatio') ){
+			return RenderAdventCalendar()
+		}else{
+			let filename;
+			if ( pathname.startsWith('/page/') ) {
+				filename = 'post/' + location.pathname.slice(6) + '.md'
+				if ( isValidFileName(filename) ) filename = 'post/404.md';
+			} else {
+				filename = 'post/404.md'
+			}
+			return RenderMarkdown(filename)
+		}
+	})().then( () => {
 		const text = document.getElementById('markdown')
 		text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 
@@ -181,6 +225,37 @@ const createCard = (filename,title,summary) => {
 	articleBody.appendChild(articleTitle)
 	articleBody.appendChild(articleSummary)
 	articleBody.appendChild(articleLink)
+
+	const card = document.createElement("div")
+	card.className = "card"
+	card.appendChild(articleBody)
+
+	return card
+}
+
+const createCalandarEntry = (url,title,summary) => {
+
+	const articleBody = document.createElement("div")
+	articleBody.className = "card-body"
+
+	const articleTitle = document.createElement("h5")
+	articleTitle.className = "card-title"
+	articleTitle.textContent = title
+	articleBody.appendChild(articleTitle)
+
+	const articleSummary = document.createElement("p")
+	articleSummary.className = "card-text"
+	articleSummary.textContent = summary
+	articleBody.appendChild(articleSummary)
+
+	if( url !== null){
+		const articleLink = document.createElement("a")
+		articleLink.className = "card-link"
+		articleLink.href = url
+		articleLink.textContent = "Read more"
+		articleBody.appendChild(articleLink)
+	}
+
 
 	const card = document.createElement("div")
 	card.className = "card"
