@@ -1,5 +1,3 @@
-const cacheVersion = 'v4';
-
 const origin = 'https://blog.katio.net'
 
 const cacheList = [
