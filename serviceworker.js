@@ -1,4 +1,4 @@
-const cacheVersion = 'v2';
+const cacheVersion = 'v4';
 
 const origin = 'https://blog.katio.net'
 
@@ -27,18 +27,37 @@ self.addEventListener('install', event => {
 })
 
 self.addEventListener('fetch', event => {
-	console.log('sw: fetch triggered.');
-	event.respondWith(
 		caches.match(event.request)
 			.then( response => {
-				return response || fetch(event.request).then( response2 => {
-					console.log('sw: fetching non cached resources')
-					return caches.open(cacheVersion)
-						.then( cache => {
-							cache.put(event.request, response2.clone())
-							return response2;
-						})
-				})
+					if( event.request.url.startsWith('http://localhost') || event.request.url.startsWith('https://blog.katio.net') ){
+						if (response) {
+							console.log('sw: Same Origin(from cache). ' + event.request.url)
+							console.log(response)
+							return response
+						} else {
+							console.log('sw: Same Origin(fetch). ' + event.request.url)
+							return fetch(event.request.url).then( response2 => {
+								return caches.open(cacheVersion)
+									.then( cache => {
+										cache.put(event.request, response2.clone())
+										event.respondWith(response2)
+									})
+							})
+						}
+					}else{
+						if (response) {
+							console.log('sw: Cross Origin(from cache). ' + event.request.url)
+							return response
+						} else {
+							console.log('sw: Cross Origin(fetch). ' + event.request.url)
+							return fetch(event.request.url, {mode: "no-cors"}).then( response2 => {
+								return caches.open(cacheVersion)
+									.then( cache => {
+										cache.put(event.request, response2.clone())
+										event.respondWith(response2)
+									})
+							})
+						}
+					}
 			} )
-	)
 })
