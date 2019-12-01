@@ -64,7 +64,7 @@ const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {
 				if( response.ok !== true ) {
-					return fetch('https://static.katio.net/markdown/404.md')
+					return fetch('https://static.katio.net/post/404.md')
 						//.then( (response) => response.body.getReader() )
 						.then( (response) => response.text() )
 				} else {
@@ -141,10 +141,10 @@ const UpdatePageFromUrl = () => {
 	const pathname = location.pathname
 	let filename;
 	if ( pathname.startsWith('/page/') ) {
-		filename = 'markdown/' + location.pathname.slice(6) + '.md'
-		if ( isValidFileName(filename) ) filename = 'markdown/404.md';
+		filename = 'post/' + location.pathname.slice(6) + '.md'
+		if ( isValidFileName(filename) ) filename = 'post/404.md';
 	} else {
-		filename = 'markdown/404.md'
+		filename = 'post/404.md'
 	}
 
 	document.getElementById("markdown").textContent = 'loading ...';
