@@ -12,4 +12,4 @@ const json = JSON.stringify(object)
 
 fs.writeFile('dynamic/info', json)
 
-fs.appendFile('serviceworker.js', "const chacheVersion = '" + commit_hash + "';\n")
+fs.appendFile('serviceworker.js', "const cacheVersion = '" + commit_hash + "';\n")
