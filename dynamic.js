@@ -1,13 +1,15 @@
 const fs = require('fs').promises
 const execSync = require('child_process').execSync
 
-const commit_time_raw = execSync('git show -s --format=%ct HEAD').toString()
-const commit_time = commit_time_raw.replace('\n', '')
+const commit_hash_raw = execSync('git rev-parse --short HEAD').toString()
+const commit_hash = commit_hash_raw.replace('\n', '')
 
 const object = {
-	commit_time: commit_time
+	commit_hash: commit_hash
 }
 
 const json = JSON.stringify(object)
 
 fs.writeFile('dynamic/info', json)
+
+fs.appendFile('serviceworker.js', "const chacheVersion = '" + commit_hash + "';\n")
