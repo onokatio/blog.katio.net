@@ -39,11 +39,16 @@ const RenderIndex = () => {
 			const header = document.createElement('h1')
 			header.textContent = "おのかちお's blog"
 
+			const adcLink = document.createElement('a')
+			adcLink.href = "/adventcalendar/2019/onokatio"
+			adcLink.innerText = "アドベントカレンダー 2019はこちら"
+
 			const articleList = document.createElement('div')
 			articleList.className = 'd-flex flex-wrap'
 			articleList.id = 'articleList'
 
 			document.getElementById("markdown").appendChild(header)
+			document.getElementById("markdown").appendChild(adcLink)
 			document.getElementById("markdown").appendChild(articleList)
 
 
