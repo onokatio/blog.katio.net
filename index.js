@@ -198,11 +198,12 @@ const UpdatePageFromUrl = () => {
 		const text = document.getElementById('markdown')
 		text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 
-		// Array.prototype.forEach.call(text.getElementsByTagName('a'), (element) => {
-
 		Array.from(text.getElementsByTagName('a')).forEach( element => {
-			//TODO see domain and use smooth for adc link
-			if( element.pathname.startsWith('/page/') || ( element.pathname === '/' && element.hash === "" ) ) element.addEventListener('click', smoothJump )
+			if( element.pathname.startsWith('/page/')
+				|| element.pathname.startsWith('/adventcalendar/')
+				|| ( element.pathname === '/' && element.hash === "" ) ){
+					element.addEventListener('click', smoothJump )
+			}
 		})
 
 	})
