@@ -188,15 +188,12 @@ const UpdatePageFromUrl = () => {
 			return RenderIndex()
 		}else if( pathname.startsWith('/adventcalendar/2019/onokatio') ){
 			return RenderAdventCalendar()
-		}else{
-			let filename;
-			if ( pathname.startsWith('/page/') ) {
-				filename = 'post/' + location.pathname.slice(6) + '.md'
-				if ( isValidFileName(filename) ) filename = 'post/404.md';
-			} else {
-				filename = 'post/404.md'
-			}
+		} else if ( pathname.startsWith('/page/') ) {
+			const filename = 'post/' + location.pathname.slice(6) + '.md'
+			if ( isValidFileName(filename) ) filename = 'post/404.md';
 			return RenderMarkdown(filename)
+		} else {
+			return RenderMarkdown('post/404.md')
 		}
 	})().then( () => {
 		const text = document.getElementById('markdown')
