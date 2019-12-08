@@ -190,7 +190,11 @@ const UpdatePageFromUrl = () => {
 			const filename = 'post/' + location.pathname.slice(6) + '.md'
 			if ( isValidFileName(filename) ) filename = 'post/404.md';
 
-			return RenderMarkdown(filename)
+			if( (new URLSearchParams(location.search)).get('slide') === "true" ){
+				return RenderSlide(filename)
+			}else{
+				return RenderMarkdown(filename)
+			}
 		} else {
 			return RenderMarkdown('post/404.md')
 		}
