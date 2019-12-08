@@ -179,18 +179,17 @@ const RenderMarkdown = filename => {
 const isValidFileName = filename => ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/)
 
 const UpdatePageFromUrl = () => {
-	const pathname = location.pathname
-
 	document.getElementById("markdown").textContent = 'loading ...';
 
 	(() => {
-		if( pathname === '/' ){
+		if( location.pathname === '/' ){
 			return RenderIndex()
-		}else if( pathname.startsWith('/adventcalendar/2019/onokatio') ){
+		}else if( location.pathname.startsWith('/adventcalendar/2019/onokatio') ){
 			return RenderAdventCalendar()
-		} else if ( pathname.startsWith('/page/') ) {
+		} else if ( location.pathname.startsWith('/page/') ) {
 			const filename = 'post/' + location.pathname.slice(6) + '.md'
 			if ( isValidFileName(filename) ) filename = 'post/404.md';
+
 			return RenderMarkdown(filename)
 		} else {
 			return RenderMarkdown('post/404.md')
