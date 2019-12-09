@@ -19,7 +19,7 @@ const RenderAdventCalendar = () => {
 			document.getElementById("markdown").appendChild(header)
 			document.getElementById("markdown").appendChild(articleList)
 
-			for(let i=1; i <= 31; i++){
+			for(let i=1; i <= 25; i++){
 				const post = json.posts[i]
 				if( post === undefined ){
 					articleList.appendChild(createCalandarEntry(null,i + "日目",'記事が登録されていません。'))
