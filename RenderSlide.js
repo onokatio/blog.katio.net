@@ -14,6 +14,7 @@ const RenderSlide = filename => {
 
 				const section = document.createElement("section")
 				section.setAttribute("data-markdown","")
+				section.setAttribute("data-separator","----")
 				section.innerText = text
 
 				slide.appendChild(section)
