@@ -1,7 +1,7 @@
 "use strict";
 
-navigator.serviceWorker.register('/serviceworker.js')
-	.then( () => console.log('sw registered.') )
+//navigator.serviceWorker.register('/serviceworker.js')
+//	.then( () => console.log('sw registered.') )
 
 const smoothJump = (event) => {
 	event.preventDefault()
