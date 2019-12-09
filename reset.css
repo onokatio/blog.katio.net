@@ -11,3 +11,12 @@
 .hljs {
 	background: #002b36 !important;
 }
+
+body {
+	background: #fff;
+	background-color: #fff;
+}
+
+.reveal {
+	background-color: #000;
+}

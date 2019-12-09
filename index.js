@@ -27,6 +27,13 @@ const UpdatePageFromUrl = () => {
 			return RenderIndex()
 		}else if( location.pathname.startsWith('/adventcalendar/2019/onokatio') ){
 			return RenderAdventCalendar()
+		} else if ( location.pathname.startsWith('/slide/') ) {
+			const filename = 'slide/' + location.pathname.slice(7) + '.md'
+
+			// TODO: redirect to 404 page
+			if ( isValidFileName(filename) ) console.log("filename error")
+
+			return RenderSlide(filename)
 		} else if ( location.pathname.startsWith('/page/') ) {
 			const filename = 'post/' + location.pathname.slice(6) + '.md'
 			if ( isValidFileName(filename) ) filename = 'post/404.md';

@@ -98,3 +98,8 @@ a {
 	white-space: nowrap;
 	text-overflow: ellipsis;*/
 }
+
+.reveal {
+	width: 70vmin;
+	height: 70vmin;
+}
