@@ -1,4 +1,7 @@
 /*
+  Link: /RenderMarkdown.js; rel=preload; as=script
+  Link: /reset.css; rel=preload; as=style
+  Link: /main.css; rel=preload; as=style
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
