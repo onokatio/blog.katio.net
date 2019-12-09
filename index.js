@@ -3,14 +3,6 @@
 navigator.serviceWorker.register('/serviceworker.js')
 	.then( () => console.log('sw registered.') )
 
-const renderer = new marked.Renderer()
-
-marked.setOptions({
-	renderer: renderer,
-	langPrefix: 'hljs ',
-	highlight: (code) => hljs.highlightAuto(code).value,
-})
-
 const smoothJump = (event) => {
 	event.preventDefault()
 	event.stopPropagation()

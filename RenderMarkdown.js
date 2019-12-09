@@ -1,3 +1,8 @@
+marked.setOptions({
+	langPrefix: 'hljs ',
+	highlight: (code) => hljs.highlightAuto(code).value,
+})
+
 const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {
@@ -33,7 +38,7 @@ const RenderMarkdown = filename => {
 			.then ( (text) => {
 				const metadata = yamlFront.safeLoadFront(text)
 				const content = metadata.__content
-				const html = marked(content, { renderer: renderer })
+				const html = marked(content)
 				document.getElementById("markdown").textContent = ''
 				document.getElementById("markdown").insertAdjacentHTML('afterbegin',html)
 
