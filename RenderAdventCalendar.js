@@ -1,3 +1,5 @@
+"use strict";
+
 const RenderAdventCalendar = () => {
 	return fetch('https://static.katio.net/adventCalendar/2019/onokatio.json')
 		.then( (response) => response.json() )

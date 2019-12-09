@@ -1,3 +1,5 @@
+"use strict";
+
 marked.setOptions({
 	langPrefix: 'hljs ',
 	highlight: (code) => hljs.highlightAuto(code).value,
