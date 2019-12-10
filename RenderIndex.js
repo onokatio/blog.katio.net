@@ -1,6 +1,6 @@
 "use strict";
 
-const RenderIndex = () => {
+export const RenderIndex = () => {
 	return fetch('https://static.katio.net/dynamic/markdownlist')
 		.then( (response) => response.json() )
 		.then( (json) => {

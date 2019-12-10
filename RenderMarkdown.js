@@ -5,7 +5,7 @@ marked.setOptions({
 	highlight: (code) => hljs.highlightAuto(code).value,
 })
 
-const RenderMarkdown = filename => {
+export const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {
 				if( response.ok !== true ) {

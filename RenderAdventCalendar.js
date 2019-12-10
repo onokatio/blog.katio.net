@@ -1,6 +1,6 @@
 "use strict";
 
-const RenderAdventCalendar = () => {
+export const RenderAdventCalendar = () => {
 	return fetch('https://static.katio.net/adventcalendar/2019/onokatio.json')
 		.then( (response) => response.json() )
 		.then( (json) => {

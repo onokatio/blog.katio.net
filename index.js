@@ -1,5 +1,10 @@
 "use strict";
 
+import { RenderAdventCalendar } from '/RenderAdventCalendar.js'
+import { RenderIndex } from '/RenderIndex.js'
+import { RenderMarkdown } from '/RenderMarkdown.js'
+import { RenderSlide } from '/RenderSlide.js'
+
 //navigator.serviceWorker.register('/serviceworker.js')
 //	.then( () => console.log('sw registered.') )
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const RenderSlide = filename => {
+export const RenderSlide = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {
 				return response.text()
