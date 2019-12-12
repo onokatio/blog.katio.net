@@ -5,6 +5,9 @@ import { RenderIndex } from './RenderIndex.js'
 import { RenderMarkdown } from './RenderMarkdown.js'
 import { RenderSlide } from './RenderSlide.js'
 
+import './styles/main.scss'
+import './styles/reset.scss'
+
 //navigator.serviceWorker.register('/serviceworker.js')
 //	.then( () => console.log('sw registered.') )
 
