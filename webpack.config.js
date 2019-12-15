@@ -9,8 +9,14 @@ module.exports = {
         test: /\.scss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: ['babel-loader'],
+      },
     ],
   },
+  resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
     ecmaVersion: 2015,
   }
