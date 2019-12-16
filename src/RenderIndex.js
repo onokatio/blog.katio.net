@@ -1,5 +1,10 @@
 "use strict";
 
+import React from "react"
+import ReactDOM from "react-dom"
+
+import ArticleItem from "./components/ArticleItem.jsx"
+
 export const RenderIndex = () => {
 	return fetch('https://static.katio.net/dynamic/markdownlist')
 		.then( (response) => response.json() )
@@ -25,10 +30,12 @@ export const RenderIndex = () => {
 			document.getElementById("markdown").appendChild(articleList)
 
 
-			json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
-				.forEach( ({filename,title,summary}) => {
-					document.getElementById("articleList").appendChild(createCard(filename,title,summary))
+			const element = json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
+				.map( ({filename,title,summary}) => {
+					const link = "/page/" + filename.replace(/\.md$/,'')
+					return <ArticleItem title={title} summary={summary} link={link}/>
 				})
+			ReactDOM.render(element, document.getElementById("articleList"))
 
 			document.querySelector("meta[name='description']").setAttribute('content', '記事一覧')
 			document.querySelector("meta[property='og:description']").setAttribute('content', '記事一覧')
@@ -36,31 +43,4 @@ export const RenderIndex = () => {
 			document.querySelector("meta[property='og:title']").setAttribute('content', "記事一覧 - おのかちお's blog")
 
 		})
-}
-
-const createCard = (filename,title,summary) => {
-	const articleTitle = document.createElement("h5")
-	articleTitle.className = "card-title"
-	articleTitle.textContent = title
-
-	const articleSummary = document.createElement("p")
-	articleSummary.className = "card-text"
-	articleSummary.textContent = summary + '...'
-
-	const articleLink = document.createElement("a")
-	articleLink.className = "card-link"
-	articleLink.href = "/page/" + filename.replace(/\.md$/,'')
-	articleLink.textContent = "Read more"
-
-	const articleBody = document.createElement("div")
-	articleBody.className = "card-body"
-	articleBody.appendChild(articleTitle)
-	articleBody.appendChild(articleSummary)
-	articleBody.appendChild(articleLink)
-
-	const card = document.createElement("div")
-	card.className = "card"
-	card.appendChild(articleBody)
-
-	return card
 }
