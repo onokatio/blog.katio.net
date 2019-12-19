@@ -5,6 +5,7 @@ import { RenderIndex } from './RenderIndex.js'
 import { RenderMarkdown } from './RenderMarkdown.js'
 import { RenderSlide } from './RenderSlide.js'
 
+import 'github-markdown-css'
 import './styles/main.scss'
 import './styles/reset.scss'
 
