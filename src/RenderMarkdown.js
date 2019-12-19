@@ -2,6 +2,7 @@
 
 import marked from 'marked';
 import hljs from 'highlight.js';
+const yamlFront = require("yaml-front-matter")
 
 marked.setOptions({
 	langPrefix: 'hljs ',

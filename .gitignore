@@ -89,6 +89,7 @@ typings/
 # gatsby files
 .cache/
 public/main.js
+public/*.LICENSE
 
 # vuepress build output
 .vuepress/dist
