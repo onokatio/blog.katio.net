@@ -8,6 +8,9 @@ import { RenderSlide } from './RenderSlide.js'
 import 'bootstrap-honoka'
 import 'bootstrap-honoka/dist/css/bootstrap.min.css'
 
+import joypixels from 'emoji-toolkit'
+import 'emoji-toolkit/extras/css/joypixels.min.css'
+
 import 'github-markdown-css'
 import './styles/main.scss'
 import './styles/reset.scss'
