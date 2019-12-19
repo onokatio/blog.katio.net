@@ -31,9 +31,9 @@ export const RenderIndex = () => {
 
 
 			const element = json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
-				.map( ({filename,title,summary}) => {
+				.map( ({filename,title,summary}, index) => {
 					const link = "/page/" + filename.replace(/\.md$/,'')
-					return <ArticleItem title={title} summary={summary} link={link}/>
+					return <ArticleItem key={index} title={title} summary={summary} link={link}/>
 				})
 			ReactDOM.render(element, document.getElementById("articleList"))
 
