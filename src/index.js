@@ -1,7 +1,5 @@
 "use strict";
 
-import RenderSlide from './RenderSlide.js'
-
 import 'bootstrap-honoka'
 import 'bootstrap-honoka/dist/css/bootstrap.min.css'
 
@@ -42,6 +40,7 @@ const UpdatePageFromUrl = () => {
 			const { default: RenderAdventCalendar } = await import('./RenderAdventCalendar.js')
 			return RenderAdventCalendar()
 		} else if ( location.pathname.startsWith('/slide/') ) {
+			const { default: RenderSlide } = await import('./RenderSlide.js')
 			const filename = 'slide/' + location.pathname.slice(7) + '.md'
 
 			// TODO: redirect to 404 page
