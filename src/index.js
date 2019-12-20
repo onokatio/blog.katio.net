@@ -1,8 +1,5 @@
 "use strict";
 
-import RenderAdventCalendar from './RenderAdventCalendar.js'
-import RenderIndex from './RenderIndex.js'
-import RenderMarkdown from './RenderMarkdown.js'
 import RenderSlide from './RenderSlide.js'
 
 import 'bootstrap-honoka'
@@ -37,10 +34,12 @@ const isValidFileName = filename => ! filename.match( /^[a-zA-Z0-9-0_\.\-\/]+$/)
 const UpdatePageFromUrl = () => {
 	document.getElementById("markdown").textContent = 'loading ...';
 
-	(() => {
+	(async () => {
 		if( location.pathname === '/' ){
+			const { default: RenderIndex } = await import('./RenderIndex.js')
 			return RenderIndex()
 		}else if( location.pathname.startsWith('/adventcalendar/2019/onokatio') ){
+			const { default: RenderAdventCalendar } = await import('./RenderAdventCalendar.js')
 			return RenderAdventCalendar()
 		} else if ( location.pathname.startsWith('/slide/') ) {
 			const filename = 'slide/' + location.pathname.slice(7) + '.md'
@@ -50,6 +49,7 @@ const UpdatePageFromUrl = () => {
 
 			return RenderSlide(filename)
 		} else if ( location.pathname.startsWith('/page/') ) {
+			const { default: RenderMarkdown } = await import('./RenderMarkdown.js')
 			const filename = 'post/' + location.pathname.slice(6) + '.md'
 			if ( isValidFileName(filename) ) filename = 'post/404.md';
 
@@ -59,6 +59,7 @@ const UpdatePageFromUrl = () => {
 				return RenderMarkdown(filename)
 			}
 		} else {
+			const { default: RenderMarkdown } = await import('./RenderMarkdown.js')
 			return RenderMarkdown('post/404.md')
 		}
 	})().then( () => {
