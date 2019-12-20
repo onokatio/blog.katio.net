@@ -6,11 +6,6 @@ import 'highlight.js/styles/solarized-dark.css'
 
 const yamlFront = require("yaml-front-matter")
 
-marked.setOptions({
-	langPrefix: 'hljs ',
-	highlight: (code) => hljs.highlightAuto(code).value,
-})
-
 export const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {

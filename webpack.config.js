@@ -27,6 +27,7 @@ module.exports = {
 	output: {
 		ecmaVersion: 2015,
 		filename: 'main.js',
+		chunkFilename: '[name].[id].js',
 		path: path.join(__dirname, 'public/'),
 	}
 };
