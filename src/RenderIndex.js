@@ -1,14 +1,13 @@
 "use strict";
 
-import React from "react"
-import ReactDOM from "react-dom"
-
 import ArticleItem from "./components/ArticleItem.jsx"
 
 const RenderIndex = () => {
 	return fetch('https://static.katio.net/dynamic/markdownlist')
 		.then( (response) => response.json() )
-		.then( (json) => {
+		.then( async (json) => {
+			const { default: React } = await import("react")
+			const { default: ReactDOM } = await import("react-dom")
 
 			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog")
 			document.getElementById("editgithub").textContent = 'Pull Request this site on github'
