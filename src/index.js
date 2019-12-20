@@ -1,6 +1,5 @@
 "use strict";
 
-import 'bootstrap-honoka'
 import 'bootstrap-honoka/dist/css/bootstrap.min.css'
 
 import joypixels from 'emoji-toolkit'
