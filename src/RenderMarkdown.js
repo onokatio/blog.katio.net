@@ -1,15 +1,6 @@
 "use strict";
 
-import marked from 'marked';
-import hljs from 'highlight.js';
 import 'highlight.js/styles/solarized-dark.css'
-
-const yamlFront = require("yaml-front-matter")
-
-marked.setOptions({
-	langPrefix: 'hljs ',
-	highlight: (code) => hljs.highlightAuto(code).value,
-})
 
 const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
@@ -43,7 +34,16 @@ const RenderMarkdown = filename => {
 				//return text;
 			})
 			*/
-			.then ( (text) => {
+			.then ( async (text) => {
+				const { default: marked } = await import("marked")
+				const { default: hljs } = await import("highlight.js")
+				const yamlFront = await import("yaml-front-matter")
+
+				marked.setOptions({
+					langPrefix: 'hljs ',
+					highlight: (code) => hljs.highlightAuto(code).value,
+				})
+
 				const metadata = yamlFront.safeLoadFront(text)
 				const content = metadata.__content
 				const html = marked(content)
