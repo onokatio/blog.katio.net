@@ -60,7 +60,7 @@ const UpdatePageFromUrl = () => {
 			return RenderMarkdown('post/404.md')
 		}
 	})().then( async () => {
-		const { default: joypixels } = await import("emoji-toolkit")
+		const { default: joypixels } = await import(/* webpackChunkName: "emoji-toolkit" */ "emoji-toolkit")
 		const text = document.getElementById('markdown')
 		text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 

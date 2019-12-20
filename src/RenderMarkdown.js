@@ -35,9 +35,9 @@ const RenderMarkdown = filename => {
 			})
 			*/
 			.then ( async (text) => {
-				const { default: marked } = await import("marked")
-				const { default: hljs } = await import("highlight.js")
-				const yamlFront = await import("yaml-front-matter")
+				const { default: marked } = await import(/* webpackChunkName: "marked" */ "marked")
+				const { default: hljs } = await import(/* webpackChunkName: "highlight" */ "highlight.js")
+				const yamlFront = await import(/* webpackChunkName: "yaml-front-matter" */ "yaml-front-matter")
 
 				marked.setOptions({
 					langPrefix: 'hljs ',
