@@ -5,7 +5,7 @@ import ReactDOM from "react-dom"
 
 import ArticleItem from "./components/ArticleItem.jsx"
 
-export const RenderIndex = () => {
+const RenderIndex = () => {
 	return fetch('https://static.katio.net/dynamic/markdownlist')
 		.then( (response) => response.json() )
 		.then( (json) => {
@@ -44,3 +44,5 @@ export const RenderIndex = () => {
 
 		})
 }
+
+export default RenderIndex

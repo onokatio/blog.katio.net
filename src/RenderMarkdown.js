@@ -6,7 +6,7 @@ import 'highlight.js/styles/solarized-dark.css'
 
 const yamlFront = require("yaml-front-matter")
 
-export const RenderMarkdown = filename => {
+const RenderMarkdown = filename => {
 		return fetch('https://static.katio.net/' + filename)
 			.then( (response) => {
 				if( response.ok !== true ) {
@@ -81,3 +81,5 @@ export const RenderMarkdown = filename => {
 				document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog/blob/master/" + filename)
 			})
 }
+
+export default RenderMarkdown
