@@ -2,7 +2,6 @@
 
 import 'bootstrap-honoka/dist/css/bootstrap.min.css'
 
-import joypixels from 'emoji-toolkit'
 import 'emoji-toolkit/extras/css/joypixels.min.css'
 
 import 'github-markdown-css'
@@ -60,7 +59,8 @@ const UpdatePageFromUrl = () => {
 			const { default: RenderMarkdown } = await import('./RenderMarkdown.js')
 			return RenderMarkdown('post/404.md')
 		}
-	})().then( () => {
+	})().then( async () => {
+		const { default: joypixels } = await import("emoji-toolkit")
 		const text = document.getElementById('markdown')
 		text.innerHTML = joypixels.shortnameToUnicode(text.innerHTML)
 
