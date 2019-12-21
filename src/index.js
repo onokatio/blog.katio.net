@@ -32,13 +32,13 @@ const UpdatePageFromUrl = () => {
 
 	(async () => {
 		if( location.pathname === '/' ){
-			const { default: RenderIndex } = await import('./RenderIndex.js')
+			const { default: RenderIndex } = await import(/* webpackChunkName: "RenderIndex" */ './RenderIndex.js')
 			return RenderIndex()
 		}else if( location.pathname.startsWith('/adventcalendar/2019/onokatio') ){
-			const { default: RenderAdventCalendar } = await import('./RenderAdventCalendar.js')
+			const { default: RenderAdventCalendar } = await import(/* webpackChunkName: "RenderAdventCalendar" */ './RenderAdventCalendar.js')
 			return RenderAdventCalendar()
 		} else if ( location.pathname.startsWith('/slide/') ) {
-			const { default: RenderSlide } = await import('./RenderSlide.js')
+			const { default: RenderSlide } = await import(/* webpackChunkName: "RenderSlide" */ './RenderSlide.js')
 			const filename = 'slide/' + location.pathname.slice(7) + '.md'
 
 			// TODO: redirect to 404 page
@@ -46,7 +46,7 @@ const UpdatePageFromUrl = () => {
 
 			return RenderSlide(filename)
 		} else if ( location.pathname.startsWith('/page/') ) {
-			const { default: RenderMarkdown } = await import('./RenderMarkdown.js')
+			const { default: RenderMarkdown } = await import(/* webpackChunkName: "RenderMarkdown" */ './RenderMarkdown.js')
 			const filename = 'post/' + location.pathname.slice(6) + '.md'
 			if ( isValidFileName(filename) ) filename = 'post/404.md';
 
@@ -56,7 +56,7 @@ const UpdatePageFromUrl = () => {
 				return RenderMarkdown(filename)
 			}
 		} else {
-			const { default: RenderMarkdown } = await import('./RenderMarkdown.js')
+			const { default: RenderMarkdown } = await import(/* webpackChunkName: "RenderMarkdown" */ './RenderMarkdown.js')
 			return RenderMarkdown('post/404.md')
 		}
 	})().then( async () => {
