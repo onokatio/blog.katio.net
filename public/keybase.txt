@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/onokatio_
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.katio.net
+  * I am onokatio_ (https://keybase.io/onokatio_) on keybase.
+  * I have a public key with fingerprint 6EA9 974F 9C2F 0310 6BDE  84F6 160D 8704 EFA2 F6D0
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101bc01dd609cb809bc9431b8be688b2ecaed36d123a1972b6595f8c284eee6db8d0a",
+      "fingerprint": "6ea9974f9c2f03106bde84f6160d8704efa2f6d0",
+      "host": "keybase.io",
+      "key_id": "160d8704efa2f6d0",
+      "kid": "0101bc01dd609cb809bc9431b8be688b2ecaed36d123a1972b6595f8c284eee6db8d0a",
+      "uid": "2b674d2cb185094e05882a3091212619",
+      "username": "onokatio_"
+    },
+    "service": {
+      "hostname": "blog.katio.net",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1578467759,
+  "expire_in": 157680000,
+  "prev": "37f063ca68d7b33925285c99de381cef0bc955fdb0662859245fb12ee5d5775c",
+  "seqno": 5,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUkloFEEUndHEGSPBCHFERMUWwUOM1UtVVw0uuFwEMXiIImKGrq7qSTNj96S7
+jUsIalRcUCMIGvcYUYzGXdGAC3hQJApqxGXcEOagKCioUTCi1YPePFqXot5/79X7
+n7+jfGAkHk2Ubyz52NF3P9rzjkbqhq893yRRl62Ukk1ShhcvnmXcD1IZm0lJCchA
+piaQGUOAmBQDQk2iqTLFlCOMqcJNgzMVMVlRDZnoCkWQQAubCtY454hRzIAhVUmW
+7aS5l/NsJxC2iBuE6JpFTMUCqgwQZRxrFpIRYFgHGrcMxUIMCGG964cKEY4aPq+2
+XYGJR6oY7x/8/5x7WdFOlHWNKSaVMQRE4wBirBgqILIiK0gmIdHnnmMs5YLtOm7G
+CGw3JTVXSQJutE0eTjZs5Q+FZt10dZFU7fBAyHOeG7immxW1+iDI+clQG6zMheTl
+nKb+2KSo7TAxSqFo5J5vu46UlAXTDOzQV4Y61pCuQ1Il8RU52+Mp2ynCCANxwn94
+o7BUdQssRqppIMx0qqpEgQqGJiGMq1g2uQXEvCC0GAUIiQpRNGhRWeEcMij8TSns
+rMFxpSQUOY208PTttGMEyzwuNZdtjqolkWg8MjoxrsTp3F2zf/LAisyr9X1/1690
+QLh7kbLBFX+RBRdiP2Kfvh7t23fwwNRP2yvvxlYNap38ZcrjreqidZ9LbtZls78m
+2U+etFSmjpysVb67984X9i5hqfbWYbc6e0zl1Nwbs0Y2x29dPHPu17qnM3q3lBr5
+c6zdh7sOzHk/EZrt21pqH5a3PkOPyLHespPNbD6aXzh7b9rPeNvlF739z65Ufyvk
+X9R1l59uyFQs5U1G2cWuxImWBKldPbWjZnX+weENh97MvtTQdqx/1lvw8UGv9+54
+z+V5Ma/05bZHrypuf99yKD1En3g4c10ftWpmTWJs98KfS17vgaN3Du2urM+vYWjT
+mLausx/a4h0HC1cXPa/pHx/N37npT+9GdN+YQqzr2oQRvwE=
+=zHU1
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/onokatio_
+
+==================================================================
+
