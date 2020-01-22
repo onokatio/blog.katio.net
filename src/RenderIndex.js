@@ -9,7 +9,7 @@ const RenderIndex = () => {
 			const { default: React } = await import(/* webpackChunkName: "react" */ "react")
 			const { default: ReactDOM } = await import(/* webpackChunkName: "react-dom" */ "react-dom")
 
-			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio-blog/blog")
+			document.getElementById("editgithub").setAttribute("href", "https://github.com/onokatio/blog.katio.net")
 			document.getElementById("editgithub").textContent = 'Pull Request this site on github'
 			document.getElementById("markdown").textContent = ''
 
