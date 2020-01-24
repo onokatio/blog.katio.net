@@ -1,2 +1,3 @@
+/resource/* https://static.katio.net/:splat 200
 /* / 200
 https://blog-katio-net.netlify.com/* https://blog.katio.net/:splat 301!
