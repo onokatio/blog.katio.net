@@ -1,7 +1,7 @@
 "use strict";
 
 const RenderSlide = filename => {
-		return fetch('https://static.katio.net/' + filename)
+		return fetch('https://blog.katio.net/resource/' + filename)
 			.then( (response) => {
 				return response.text()
 			})

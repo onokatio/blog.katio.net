@@ -7,7 +7,7 @@
 		if ( location.pathname.startsWith('/page/') && location.pathname.match( /^[a-zA-Z0-9-0_\.\-\/]+$/ ) ){
 			console.log('start preload')
 			const preloadLink = document.createElement("link")
-			preloadLink.href = 'https://static.katio.net/post/' + location.pathname.slice(6) + '.md'
+			preloadLink.href = 'https://blog.katio.net/resource/post/' + location.pathname.slice(6) + '.md'
 			preloadLink.rel = "preload"
 			preloadLink.as = "fetch"
 			preloadLink.setAttribute('crossorigin','anonymous')
@@ -15,9 +15,6 @@
 		}
 	</script>
 	<!-- /preload -->
-    <link rel="preconnect" href="https://static.katio.net/">
-    <link rel="dns-prefetch" href="https://static.katio.net/">
-
     <!-- stop loading for temporarily. this breaks other page.
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reset.min.css" integrity="sha256-5/N9vOsEFEeDStOZCuE/rpwRcijUVFx6RY5vjx1usCc=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css" integrity="sha256-OxiHrn+gXudPDHxTvXiQzeFjZU/FllSSPmOOYAZ1O/g=" crossorigin="anonymous" />
@@ -37,7 +34,7 @@
     <meta property="og:description" content="取得に失敗しました">
     <meta property="og:type" content="artcle">
     <meta property="og:url" content="https://blog.katio.net/">
-    <meta property="og:image" content="https://static.katio.net/image/katio.jpg">
+    <meta property="og:image" content="https://blog.katio.net/resource/image/katio.jpg">
     <meta property="og:site_name" content="おのかちお's blog">
 
     <meta name="google-site-verification" content="86HJNXgtgHoaF8PlmtzVUIic7r18GLYtEIQZJLt2mN4" />
