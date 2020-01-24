@@ -8,13 +8,7 @@ export default class ArticleList extends React.Component {
 					{
 						this.props.items.map( (item) => {
 						return (
-							<li className="ArticleItem card">
-								<div className="card-body">
-									<h5 className="card-title">{item.title}</h5>
-									<p className="card-text">{item.summary}</p>
-									<a className="card-link" href={item.link}>Read more</a>
-								</div>
-							</li>
+							<ArticleItem title={item.title} summary={item.summary} link={item.link} />
 						)
 						})
 					}
