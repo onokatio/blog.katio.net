@@ -6,7 +6,5 @@
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer-when-downgrade
-  Content-Security-Policy-Report-Only: default-src 'none'; connect-src https://static.katio.net/markdown/minotebook-undervolt.md; font-src data:; img-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/lib/js/joypixels.min.js https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.1/marked.min.js https://dworthen.github.io/js-yaml-front-matter/js/yamlFront.js https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js; style-src 'self' https://cdn.honokak.osaka/honoka/4.3.1/css/ https://cdn.jsdelivr.net/npm/emoji-toolkit@5.0.5/extras/css/ https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/ https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/; worker-src 'self'; report-uri https://0b53439daf49a79034dd4b6447dde5f8.report-uri.com/r/d/csp/reportOnly
-  Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://0b53439daf49a79034dd4b6447dde5f8.report-uri.com/a/d/g"}],"include_subdomains":true}
   NEL: {"report_to":"default","max_age":31536000,"include_subdomains":true}
   Public-Key-Pins-Report-Only: pin-sha256="lszQvjgXXz1R6xsI1Y8uZIreF/XbsEzUpfRXWW7Iogg="; max-age=5184000; includeSubDomains; report-uri="https://0b53439daf49a79034dd4b6447dde5f8.report-uri.com/r/d/hpkp/reportOnly"
