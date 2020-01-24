@@ -1,6 +1,7 @@
 "use strict";
 
-import ArticleItem from "./components/ArticleItem.jsx"
+//import ArticleItem from "./components/ArticleItem.jsx"
+import ArticleList from "./components/ArticleList.jsx"
 
 const RenderIndex = () => {
 	return fetch('https://static.katio.net/dynamic/markdownlist')
@@ -29,12 +30,9 @@ const RenderIndex = () => {
 			document.getElementById("markdown").appendChild(articleList)
 
 
-			const element = json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
-				.map( ({filename,title,summary}, index) => {
-					const link = "/page/" + filename.replace(/\.md$/,'')
-					return <ArticleItem key={index} title={title} summary={summary} link={link}/>
-				})
-			ReactDOM.render(element, document.getElementById("articleList"))
+			const items = json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
+
+			ReactDOM.render(<ArticleList items={items}/>, document.getElementById("articleList"))
 
 			document.querySelector("meta[name='description']").setAttribute('content', '記事一覧')
 			document.querySelector("meta[property='og:description']").setAttribute('content', '記事一覧')
