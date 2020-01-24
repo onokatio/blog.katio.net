@@ -6,9 +6,9 @@ export default class ArticleList extends React.Component {
 			return (
 				<ul>
 					{
-						this.props.items.map( (item) => {
+						this.props.items.map( (item, index) => {
 						return (
-							<ArticleItem title={item.title} summary={item.summary} link={item.link} />
+							<ArticleItem key={index} title={item.title} summary={item.summary} link={item.link} />
 						)
 						})
 					}
