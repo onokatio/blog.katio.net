@@ -1,7 +1,7 @@
 /
-  Link: /resource/dynamic/markdownlist
 
 /*
+  Link: /resource/dynamic/markdownlist; rel-preload; as=fetch
   Link: /RenderMarkdown.js; rel=preload; as=script
   Link: /reset.css; rel=preload; as=style
   Link: /main.css; rel=preload; as=style
