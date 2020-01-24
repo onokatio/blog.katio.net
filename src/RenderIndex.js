@@ -30,7 +30,10 @@ const RenderIndex = () => {
 			document.getElementById("markdown").appendChild(articleList)
 
 
-			const items = json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' )
+			const items = json.filter( contentAndFilename => contentAndFilename.filename !== '404.md' ).map( ({filename,title,summary}) => {
+					const link = "/page/" + filename.replace(/\.md$/,'')
+					return {link, title, summary}
+			})
 
 			ReactDOM.render(<ArticleList items={items}/>, document.getElementById("articleList"))
 
