@@ -22,6 +22,7 @@
 
 [Google Page Insight](https://developers.google.com/speed/pagespeed/insights/?hl=JA&url=https%3A%2F%2Fblog.katio.net%2F&tab=desktop)
 
+- https://http3check.net/?host=blog.katio.net
 - https://tls.imirhil.fr/https/blog.katio.net
 - https://www.ssllabs.com/ssltest/analyze?d=blog.katio.net
 - https://hstspreload.org/?domain=katio.net
