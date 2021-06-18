@@ -4,7 +4,7 @@
 import ArticleList from "./components/ArticleList.jsx"
 
 const RenderIndex = () => {
-	return fetch('https://static.katio.net/dynamic/markdownlist')
+	return fetch('https://static-katio-net.netlify.app/dynamic/markdownlist')
 		.then( (response) => response.json() )
 		.then( async (json) => {
 			const { default: React } = await import(/* webpackChunkName: "react" */ "react")
