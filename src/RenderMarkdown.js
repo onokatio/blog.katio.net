@@ -3,10 +3,10 @@
 import 'highlight.js/styles/solarized-dark.css'
 
 const RenderMarkdown = filename => {
-		return fetch('https://static-katio-net.netlify.app/' + filename)
+		return fetch('https://static.ketio.net/' + filename)
 			.then( (response) => {
 				if( response.ok !== true ) {
-					return fetch('https://static-katio-net.netlify.app/post/404.md')
+					return fetch('https://static.katio.net/post/404.md')
 						//.then( (response) => response.body.getReader() )
 						.then( (response) => response.text() )
 				} else {
