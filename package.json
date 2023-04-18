@@ -40,7 +40,7 @@
     "emoji-toolkit": "^5.5.1",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.18.3",
-    "marked": "^0.7.0",
+    "marked": "^4.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "yaml-front-matter": "^4.1.0"
