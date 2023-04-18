@@ -37,7 +37,7 @@
   "dependencies": {
     "bootstrap-honoka": "^4.3.1",
     "buffer": "^6.0.0",
-    "emoji-toolkit": "^5.5.1",
+    "emoji-toolkit": "^7.0.1",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.18.3",
     "marked": "^0.7.0",
