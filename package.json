@@ -41,8 +41,8 @@
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^11.11.1",
     "marked": "^15.0.7",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "yaml-front-matter": "^4.1.0"
   }
 }
